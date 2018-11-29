@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 const API_HOST = 'http://localhost:3002';
+// const API_HOST = 'https://alex-simple-todo.herokuapp.com/';
 
 class NoteList extends React.Component {
     state = {
@@ -20,7 +21,7 @@ class NoteList extends React.Component {
         return (
             <ol>
                 <ul>
-                    { this.state.titles.map(title => <li>{title}</li>)}
+                    {this.state.titles.map(title => <li>{title}</li>)}
                 </ul>
             </ol>
         )
