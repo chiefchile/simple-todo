@@ -6,6 +6,7 @@ export const Note = ({note, onUpdate, onDelete}) =>  {
 	
 	return (
 	  <div>
+		<h2 className="page-header">View Note</h2>
 		<Formik
 		  initialValues={{ title: note.title, note: note.note, user: note.user, _id: note._id}}
 		  onSubmit={(values, { setSubmitting }) => {
@@ -15,22 +16,28 @@ export const Note = ({note, onUpdate, onDelete}) =>  {
 		  enableReinitialize={true}
 		>
 		  {({ isSubmitting }) => (
-			<Form>
-			  <div>
-				  <label>Title: </label>
-				  <Field id="title" type="text" name="title" />
+			<Form className="form-horizontal">
+			  <div className="form-group">
+				  <label className="col-md-1 control-label">Title: </label>
+				  <div className="col-md-9">
+					<Field className="form-control" id="title" type="text" name="title" />
+				  </div>
 			  </div>
 			  
-			  <div>
-				  <label>Note: </label>
-				  <Field id="note" component="textarea" name="note" />
+			  <div className="form-group">
+				  <label className="col-md-1 control-label">Note: </label>
+				  <div className="col-md-9">
+					<Field className="form-control" id="note" component="textarea" name="note" />
+				  </div>
 			  </div>
 			  
-			  <button type="submit" disabled={isSubmitting}>
-				Update note
-			  </button>
+			  <div className="col-md-3 col-md-offset-1">
+				  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+					Update note
+				  </button>
+			  </div>
 			  
-			  <button onClick={() => onDelete(note._id)} type="button">
+			  <button className="btn btn-primary" onClick={() => onDelete(note._id)} type="button">
 				Delete note
 			  </button>
 			  

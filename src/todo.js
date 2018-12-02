@@ -3,6 +3,7 @@ import axios from 'axios';
 import {NewNote} from './new-note';
 import {TitleList} from './title-list';
 import {Note} from './note';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 const API_HOST = 'http://localhost:3002';
 // const API_HOST = 'https://alex-simple-todo.herokuapp.com';
@@ -83,22 +84,30 @@ export default class Todo extends Component {
 	
 	render() {
 		return (
-			<div>
-				<a href="#" onClick={() => this.toNewNote()}>New Note</a>
-				<TitleList titles={this.state.titles} onClick={(_id) => this.viewNote(_id)}/>
-				{
-					this.state.selectedNote ? 
-					<Note note={this.state.selectedNote} 
-						onUpdate={(note) => this.updateNote(note)} 
-						onDelete={(_id) => this.callDeleteNoteApi(_id)} /> :
-					null
-				}
-				{
-					this.state.isNewNote ?
-					<NewNote onSubmit={(note) => this.createNote(note)} user={this.props.user} /> :
-					null
-				}
-			</div>
+			<Grid>
+				<Row className="show-grid">
+					<Col md={3}>
+						<a href="#" onClick={() => this.toNewNote()}>New Note</a>
+						<hr/>
+						<TitleList titles={this.state.titles} onClick={(_id) => this.viewNote(_id)}/>
+					</Col>
+					<Col md={9}>
+						{
+							this.state.selectedNote ? 
+							<Note note={this.state.selectedNote} 
+								onUpdate={(note) => this.updateNote(note)} 
+								onDelete={(_id) => this.callDeleteNoteApi(_id)} /> :
+							null
+						}
+						{
+							this.state.isNewNote ?
+							<NewNote onSubmit={(note) => this.createNote(note)} user={this.props.user} /> :
+							null
+						}
+					</Col>
+				</Row>
+			</Grid>
+		
 		)
 	}
 
