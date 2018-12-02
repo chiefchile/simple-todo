@@ -19,10 +19,10 @@ export default class Todo extends Component {
 	
 	componentDidMount() {
 		//console.log('TitleList mounted');
-        this.callGetTitlesApi();
+        this.getTitles();
     }
 	
-	callGetTitlesApi() {
+	getTitles() {
 		axios.get(`${API_HOST}/titles/${this.props.user}`)
 			.then(res => {
 				// TODO: Add err handling / err boundary?
@@ -30,7 +30,7 @@ export default class Todo extends Component {
 			});
 	}
 	
-	callGetNoteApi(_id) {
+	viewNote(_id) {
 		axios.get(`${API_HOST}/note/${_id}`)
 			.then(res => {
 				if (res.data.code !== 0) {
@@ -41,24 +41,24 @@ export default class Todo extends Component {
 			});
 	}
 	
-	callCreateNoteApi(note) {
+	createNote(note) {
 		axios.post(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
-				this.callGetNoteApi(res.data._id);
-				this.callGetTitlesApi();
+				this.viewNote(res.data._id);
+				this.getTitles();
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
 	}
 	
-	callUpdateNoteApi(note) {
+	updateNote(note) {
 		axios.put(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
 				this.setState({selectedNote: note, isNewNote: false});
-				this.callGetTitlesApi();
+				this.getTitles();
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -70,7 +70,7 @@ export default class Todo extends Component {
 			.then(res => {
 				console.log(res);
 				this.setState({selectedNote: null, isNewNote: false});
-				this.callGetTitlesApi();
+				this.getTitles();
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -85,17 +85,17 @@ export default class Todo extends Component {
 		return (
 			<div>
 				<a href="#" onClick={() => this.toNewNote()}>New Note</a>
-				<TitleList titles={this.state.titles} onClick={(_id) => this.callGetNoteApi(_id)}/>
+				<TitleList titles={this.state.titles} onClick={(_id) => this.viewNote(_id)}/>
 				{
 					this.state.selectedNote ? 
 					<Note note={this.state.selectedNote} 
-						onUpdate={(note) => this.callUpdateNoteApi(note)} 
+						onUpdate={(note) => this.updateNote(note)} 
 						onDelete={(_id) => this.callDeleteNoteApi(_id)} /> :
 					null
 				}
 				{
 					this.state.isNewNote ?
-					<NewNote onSubmit={(note) => this.callCreateNoteApi(note)} user={this.props.user} /> :
+					<NewNote onSubmit={(note) => this.createNote(note)} user={this.props.user} /> :
 					null
 				}
 			</div>
