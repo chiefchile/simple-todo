@@ -14,7 +14,8 @@ export default class Todo extends Component {
 		this.state = {
 			titles: [{title: null, _id: null}],
 			selectedNote: null,
-			isNewNote: false
+			isNewNote: false,
+			message: null
 		};
 	}
 	
@@ -31,14 +32,14 @@ export default class Todo extends Component {
 			});
 	}
 	
-	viewNote(_id) {
+	viewNote(_id, message) {
 		axios.get(`${API_HOST}/note/${_id}`)
 			.then(res => {
 				if (res.data.code !== 0) {
 					// TODO: Add err handling / err boundary?
 				}
 				console.log(res.data.note);
-				this.setState({selectedNote: res.data.note, isNewNote: false});
+				this.setState({selectedNote: res.data.note, isNewNote: false, message: message});
 			});
 	}
 	
@@ -46,7 +47,7 @@ export default class Todo extends Component {
 		axios.post(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
-				this.viewNote(res.data._id);
+				this.viewNote(res.data._id, {type: 'success', msg: 'Note created'});
 				this.getTitles();
 			})
 			.catch(function (error) {
@@ -58,7 +59,7 @@ export default class Todo extends Component {
 		axios.put(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
-				this.setState({selectedNote: note, isNewNote: false});
+				this.viewNote(note._id, {type: 'success', msg: 'Note updated'});
 				this.getTitles();
 			})
 			.catch(function (error) {
@@ -66,7 +67,7 @@ export default class Todo extends Component {
 			})
 	}
 	
-	callDeleteNoteApi(_id) {
+	deleteNote(_id) {
 		axios.delete(`${API_HOST}/note/${_id}`)
 			.then(res => {
 				console.log(res);
@@ -96,7 +97,8 @@ export default class Todo extends Component {
 							this.state.selectedNote ? 
 							<Note note={this.state.selectedNote} 
 								onUpdate={(note) => this.updateNote(note)} 
-								onDelete={(_id) => this.callDeleteNoteApi(_id)} /> :
+								onDelete={(_id) => this.deleteNote(_id)} 
+								message={this.state.message} /> :
 							null
 						}
 						{

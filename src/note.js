@@ -1,12 +1,14 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
+import {Message} from './message.js';
 
-export const Note = ({note, onUpdate, onDelete}) =>  {
+export const Note = ({note, onUpdate, onDelete, message}) =>  {
 	console.log(note);
 	
 	return (
 	  <div>
 		<h3 className="page-header">View Note</h3>
+		<Message message={message} />
 		<Formik
 		  initialValues={{ title: note.title, note: note.note, user: note.user, _id: note._id}}
 		  onSubmit={(values, { setSubmitting }) => {
