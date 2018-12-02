@@ -1,23 +1,16 @@
-import { Component, Fragment, default as React } from 'react';
-import axios from 'axios';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { default as React } from 'react';
+import { Formik, Form, Field } from 'formik';
 import './new-note.css';
 
-const API_HOST = 'http://localhost:3002';
-// const API_HOST = 'https://alex-simple-todo.herokuapp.com';
-
-export const NewNote = (props) => (
+export const NewNote = ({onSubmit, user}) => {
+  return (
   <div>
     <h2>New Note</h2>
     <Formik
-      initialValues={{ title: '', note: '', user: props.user}}
+      initialValues={{ title: '', note: '', user: user}}
       onSubmit={(values, { setSubmitting }) => {
 		  setSubmitting(false);
-		  axios.post(`${API_HOST}/note`, values)
-			.then(response => console.log(response))
-			.catch(function (error) {
-			  console.log(error);
-			});
+		  onSubmit(values);
       }}
     >
       {({ isSubmitting }) => (
@@ -40,4 +33,4 @@ export const NewNote = (props) => (
       )}
     </Formik>
   </div>
-);
+)};
