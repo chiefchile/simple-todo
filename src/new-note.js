@@ -5,7 +5,7 @@ import './new-note.css';
 export const NewNote = ({onSubmit, user}) => {
   return (
 	  <div>
-	    <h2 className="page-header">New Note</h2>
+	    <h3 className="page-header">New Note</h3>
 		<Formik
 		  initialValues={{ title: '', note: '', user: user}}
 		  onSubmit={(values, { setSubmitting }) => {

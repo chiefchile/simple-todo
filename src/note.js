@@ -6,7 +6,7 @@ export const Note = ({note, onUpdate, onDelete}) =>  {
 	
 	return (
 	  <div>
-		<h2 className="page-header">View Note</h2>
+		<h3 className="page-header">View Note</h3>
 		<Formik
 		  initialValues={{ title: note.title, note: note.note, user: note.user, _id: note._id}}
 		  onSubmit={(values, { setSubmitting }) => {
