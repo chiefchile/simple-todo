@@ -37,13 +37,13 @@ export const Note = ({ note, onUpdate, onDelete, result }) => {
 							<div className="col-md-2 col-md-offset-1 col-xs-3">
 								<button className="btn btn-primary" type="submit" disabled={isSubmitting}>
 									Update note
-					      </button>
+					            </button>
 							</div>
 
 							<div className="col-md-3 col-xs-3">
 								<button className="btn btn-primary" onClick={() => onDelete(note._id)} type="button">
 									Delete note
-					      </button>
+					           </button>
 							</div>
 						</div>
 
