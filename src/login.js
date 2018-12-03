@@ -7,14 +7,20 @@ export const Login = ({history, onSubmit, onLoginAsGuest, loginResult}) => {
     return (
       <div className="container">
 	    <h1 className="page-header">ToDo</h1>
-			<Message result={loginResult} />
-		<Formik
-		  initialValues={{ username: '',  password: ''}}
-		  onSubmit={(values, { setSubmitting }) => {
-              setSubmitting(false);
-              onSubmit(values);
-		  }}
-		>
+
+			<div className="row">
+				<div className="col-md-5 col-md-offset-3">
+					<Message result={loginResult} />
+				</div>
+			</div>
+
+			<Formik
+				initialValues={{ username: '',  password: ''}}
+				onSubmit={(values, { setSubmitting }) => {
+								setSubmitting(false);
+								onSubmit(values);
+				}}
+			>
 		  {({ isSubmitting }) => (
 			<Form className="form-horizontal">
 			  <div className="form-group">
@@ -37,11 +43,11 @@ export const Login = ({history, onSubmit, onLoginAsGuest, loginResult}) => {
 				  </button>
 			  </div>
 
-              <div className="col-md-3 col-xs-3">
-                <button className="btn btn-primary" onClick={() => onLoginAsGuest()} type="button">
-                Login as Guest
-                </button>
-              </div>
+				<div className="col-md-3 col-xs-3">
+					<button className="btn btn-primary" onClick={() => onLoginAsGuest()} type="button">
+					Login as Guest
+					</button>
+				</div>
 
 			</Form>
 		  )}
