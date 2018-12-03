@@ -34,7 +34,7 @@ export const Note = ({note, onUpdate, onDelete, result}) =>  {
 			  </div>
 			  
 			  <div className="row">
-				  <div className="col-md-3 col-md-offset-1 col-xs-3">
+				  <div className="col-md-2 col-md-offset-1 col-xs-3">
 					  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
 						Update note
 					  </button>
