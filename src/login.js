@@ -1,16 +1,18 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { Message } from './message';
 
-export const Login = ({history, onSubmit, onLoginAsGuest}) => {
+export const Login = ({history, onSubmit, onLoginAsGuest, loginResult}) => {
 
     return (
-        <div className="container">
+      <div className="container">
 	    <h1 className="page-header">ToDo</h1>
+			<Message result={loginResult} />
 		<Formik
 		  initialValues={{ username: '',  password: ''}}
 		  onSubmit={(values, { setSubmitting }) => {
               setSubmitting(false);
-              onSubmit(values.username, values.password);
+              onSubmit(values);
 		  }}
 		>
 		  {({ isSubmitting }) => (

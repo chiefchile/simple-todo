@@ -4,9 +4,7 @@ import {NewNote} from './new-note';
 import {TitleList} from './title-list';
 import {Note} from './note';
 import {Grid, Row, Col} from 'react-bootstrap';
-
-const API_HOST = 'http://localhost:3002';
-// const API_HOST = 'https://alex-simple-todo.herokuapp.com';
+import { API_HOST } from './index';
 
 export default class Todo extends Component {
 	constructor(props) {
