@@ -2,13 +2,13 @@ import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import {Message} from './message.js';
 
-export const Note = ({note, onUpdate, onDelete, message}) =>  {
+export const Note = ({note, onUpdate, onDelete, result}) =>  {
 	console.log(note);
 	
 	return (
 	  <div>
 		<h3 className="page-header">View Note</h3>
-		<Message message={message} />
+		<Message result={result} />
 		<Formik
 		  initialValues={{ title: note.title, note: note.note, user: note.user, _id: note._id}}
 		  onSubmit={(values, { setSubmitting }) => {
@@ -33,16 +33,19 @@ export const Note = ({note, onUpdate, onDelete, message}) =>  {
 				  </div>
 			  </div>
 			  
-			  <div className="col-md-3 col-md-offset-1">
-				  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-					Update note
-				  </button>
+			  <div className="row">
+				  <div className="col-md-3 col-md-offset-1 col-xs-3">
+					  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+						Update note
+					  </button>
+				  </div>
+				  
+				  <div className="col-md-3 col-xs-3">
+					  <button className="btn btn-primary" onClick={() => onDelete(note._id)} type="button">
+						Delete note
+					  </button>
+				  </div>
 			  </div>
-			  
-			  <button className="btn btn-primary" onClick={() => onDelete(note._id)} type="button">
-				Delete note
-			  </button>
-			  
 			  
 			  
 			</Form>

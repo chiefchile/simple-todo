@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export const Message = ({message}) => {
-	if (message) {
-		const className = `alert alert-${message.type}`;
-		return (
+export class Message extends Component {
 
-				<div className={className} role="alert">{message.msg}</div>
-			
-		)
-	} else {
-		return null;
+	getClassName() {
+		if (this.props.result.code === 0) {
+			return 'alert alert-success';
+		} else {
+			return 'alert alert-danger';
+		}
+	}
+	
+	render () {
+		if (this.props.result) {
+			return <div className={this.getClassName()} role="alert">{this.props.result.msg}</div>	
+		} else {
+			return null;
+		}
 	}
 }
