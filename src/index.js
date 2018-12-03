@@ -16,17 +16,17 @@ class Main extends Component {
 
     login(user) {
         axios.post(`${API_HOST}/login`, user)
-			.then(res => {
+            .then(res => {
                 console.log(res);
                 if (res.data.code !== 0) {
                     this.setState({ loginResult: res.data });
                 } else {
                     this.setState({ username: user.username });
                 }
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     loginAsGuest() {
@@ -39,7 +39,7 @@ class Main extends Component {
                 {
                     this.state.username ?
                         <ToDo user={this.state.username} /> :
-                        <Login onSubmit={(username, password) => this.login(username, password)} 
+                        <Login onSubmit={(username, password) => this.login(username, password)}
                             onLoginAsGuest={() => this.loginAsGuest()}
                             loginResult={this.state.loginResult}
                         />
