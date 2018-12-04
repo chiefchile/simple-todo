@@ -18,7 +18,7 @@ export default class Todo extends Component {
 	}
 
 	componentDidMount() {
-		//console.log('TitleList mounted');
+		//console.log('Todo mounted');
 		this.getTitles();
 	}
 

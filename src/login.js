@@ -6,7 +6,9 @@ export const Login = ({ history, onSubmit, onLoginAsGuest, loginResult }) => {
 
 	return (
 		<div className="container">
-			<h1 className="page-header">ToDo</h1>
+			<div className="row">
+				<div id="logo-text" className="col-md-2 col-md-offset-3"><h2>// TODO</h2></div>
+			</div>
 
 			<div className="row">
 				<div className="col-md-5 col-md-offset-3">

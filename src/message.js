@@ -1,18 +1,39 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export class Message extends Component {
+	state = {
+		style: null
+	}
 
-	getClassName() {
-		if (this.props.result.code === 0) {
-			return 'alert alert-success';
-		} else {
-			return 'alert alert-danger';
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (this.props.result !== prevProps.result) {
+			this.setStyle();
 		}
 	}
-	
-	render () {
+
+	setStyle() {
 		if (this.props.result) {
-			return <div className={this.getClassName()} role="alert">{this.props.result.msg}</div>	
+			let style = null;
+			if (this.props.result.code === 0) {
+				style = 'alert alert-success';
+			} else {
+				style = 'alert alert-danger';
+			}
+			this.setState({ style: style });
+			this.addFadeOutStyle();
+		}
+	}
+
+	addFadeOutStyle() {
+		setTimeout(() => {
+			let style = this.state.style;
+			this.setState({ style: style + ' fade-out' });
+		}, 3000)
+	}
+
+	render() {
+		if (this.props.result) {
+			return <div className={this.state.style} role="alert">{this.props.result.msg}</div>
 		} else {
 			return null;
 		}

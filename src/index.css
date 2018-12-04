@@ -3,3 +3,32 @@
 	white-space: pre-line;
 	height: 250px;
 }
+
+#logo-text {
+	color:green;
+	margin-bottom: 2em;
+}
+
+.fade-out {
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.example-enter {
+	opacity: 0.01;
+  }
+  
+  .example-enter.example-enter-active {
+	opacity: 1;
+	transition: opacity 500ms ease-in;
+  }
+  
+  .example-leave {
+	opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+	opacity: 0.01;
+	transition: opacity 300ms ease-in;
+  }
