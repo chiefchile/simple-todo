@@ -5,6 +5,10 @@ export class Message extends Component {
 		style: null
 	}
 
+	componentDidMount() {
+		this.setStyle();
+	}
+
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		if (this.props.result !== prevProps.result) {
 			this.setStyle();
