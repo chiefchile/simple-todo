@@ -6,7 +6,7 @@ import { Login } from './login';
 import axios from 'axios';
 
 //export const API_HOST = 'http://localhost:3002';
-export const API_HOST = 'https://alex-simple-todo.herokuapp.com';
+export const API_HOST = 'https://simple-todo-backend.herokuapp.com';
 
 class Main extends Component {
     state = {
