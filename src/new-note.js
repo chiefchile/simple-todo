@@ -5,7 +5,7 @@ import './new-note.css';
 export const NewNote = ({ onSubmit, user }) => {
 	return (
 		<div>
-			<h3 className="page-header">New Note</h3>
+			<h4 className="page-header">New Note</h4>
 			<Formik
 				initialValues={{ title: '', note: '', user: user }}
 				onSubmit={(values, { setSubmitting }) => {
@@ -18,14 +18,14 @@ export const NewNote = ({ onSubmit, user }) => {
 						<div className="form-group">
 							<label className="col-md-1 control-label">Title: </label>
 							<div className="col-md-9">
-								<Field className="form-control" id="title" type="text" name="title" />
+								<Field required className="form-control" id="title" type="text" name="title" />
 							</div>
 						</div>
 
 						<div className="form-group">
 							<label className="col-md-1 control-label">Note: </label>
 							<div className="col-md-9">
-								<Field className="form-control" id="note" component="textarea" name="note" />
+								<Field required className="form-control" id="note" component="textarea" name="note" />
 							</div>
 						</div>
 
