@@ -39,7 +39,7 @@ export class Message extends Component {
 		if (this.props.result) {
 			return <div className={this.state.style} role="alert">{this.props.result.msg}</div>
 		} else {
-			return null;
+			return <div className="empty-msg"></div>
 		}
 	}
 }
