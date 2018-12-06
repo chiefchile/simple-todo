@@ -1,6 +1,6 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Message } from './message.js';
+import { Message } from './message';
 
 export const Note = ({ note, onUpdate, onDelete, result }) => {
 	console.log(note);

@@ -1,8 +1,15 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Message } from './message';
+import User from './user';
+import Result from './result';
 
-export const Login = ({ history, onSubmit, onLoginAsGuest, loginResult }) => {
+export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: 
+	{
+		onSubmit(user: User): void, 
+		onLoginAsGuest(): void, 
+		loginResult: Result
+	}) => {
 
 	return (
 		<div className="container">
