@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import Result from './result';
 
-export class Message extends Component {
+interface Props {
+	result: Result | null;
+}
+
+interface State {
+	style: string
+}
+
+export class Message extends Component<Props, State> {
 	state = {
-		style: null
+		style: ''
 	}
 
 	componentDidMount() {
 		this.setStyle();
 	}
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
+	componentDidUpdate(prevProps: Props, prevState: State) {
 		if (this.props.result !== prevProps.result) {
 			this.setStyle();
 		}

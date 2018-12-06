@@ -1,8 +1,14 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import './new-note.css';
+import Note from './note';
 
-export const NewNote = ({ onSubmit, user }) => {
+interface Props {
+	onSubmit(note: Note): void,
+	user: string
+}
+
+export const NewNote = ({ onSubmit, user }: Props) => {
 	return (
 		<div>
 			<h4 className="page-header">New Note</h4>

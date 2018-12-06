@@ -1,7 +1,12 @@
 import { default as React } from 'react';
 import Title from './title';
 
-export const TitleList = (props: any) => {
+interface Props {
+	titles: Title[],
+	onClick(_id: string): void
+}
+
+export const TitleList = (props: Props) => {
 
 	return (
 		<div>
