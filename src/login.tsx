@@ -4,12 +4,13 @@ import { Message } from './message';
 import User from './user';
 import Result from './result';
 
-export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: 
-	{
-		onSubmit(user: User): void, 
-		onLoginAsGuest(): void, 
-		loginResult: Result | null
-	}) => {
+interface Props {
+	onSubmit(user: User): void, 
+	onLoginAsGuest(): void, 
+	loginResult: Result | null	
+}
+
+export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
 
 	return (
 		<div className="container">

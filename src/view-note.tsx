@@ -4,14 +4,14 @@ import { Message } from './message';
 import Note from './note';
 import Result from './result';
 
-export const ViewNote = ({ note, onUpdate, onDelete, result }:
-	{
-		note: Note,
-		onUpdate(note: Note): void,
-		onDelete(noteId: string | undefined): void,
-		result: Result | null
+interface Props {
+	note: Note,
+	onUpdate(note: Note): void,
+	onDelete(noteId: string | undefined): void,
+	result: Result | null
+}
 
-	}) => {
+export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
 	console.log(note);
 
 	return (
