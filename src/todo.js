@@ -2,7 +2,7 @@ import { Component, default as React } from 'react';
 import axios from 'axios';
 import { NewNote } from './new-note';
 import { TitleList } from './title-list';
-import { Note } from './note';
+import { ViewNote } from './view-note';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { API_HOST } from './index';
 
@@ -93,7 +93,7 @@ export default class Todo extends Component {
 					<Col md={9}>
 						{
 							this.state.selectedNote ?
-								<Note note={this.state.selectedNote}
+								<ViewNote note={this.state.selectedNote}
 									onUpdate={(note) => this.updateNote(note)}
 									onDelete={(_id) => this.deleteNote(_id)}
 									result={this.state.result} /> :

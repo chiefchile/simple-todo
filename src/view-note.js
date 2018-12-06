@@ -2,7 +2,7 @@ import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Message } from './message';
 
-export const Note = ({ note, onUpdate, onDelete, result }) => {
+export const ViewNote = ({ note, onUpdate, onDelete, result }) => {
 	console.log(note);
 
 	return (
