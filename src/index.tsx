@@ -4,17 +4,24 @@ import ToDo from './todo';
 import './index.css';
 import { Login } from './login';
 import axios from 'axios';
+import User from './user';
+import Result from './result';
 
 export const API_HOST = 'http://localhost:3002';
 // export const API_HOST = 'https://alex-simple-todo.herokuapp.com';
 
-class Main extends Component {
+interface State {
+    username: string,
+    loginResult: Result | null;
+}
+
+class Main extends Component<any, State> {
     state = {
-        username: null,
+        username: '',
         loginResult: null
     };
 
-    login(user) {
+    login(user: User): void {
         axios.post(`${API_HOST}/login`, user)
             .then(res => {
                 console.log(res);
@@ -29,7 +36,7 @@ class Main extends Component {
             });
     }
 
-    loginAsGuest() {
+    loginAsGuest(): void {
         this.setState({ username: 'guest' });
     }
 
@@ -39,7 +46,7 @@ class Main extends Component {
                 {
                     this.state.username ?
                         <ToDo user={this.state.username} /> :
-                        <Login onSubmit={(username, password) => this.login(username, password)}
+                        <Login onSubmit={(user: User) => this.login(user)}
                             onLoginAsGuest={() => this.loginAsGuest()}
                             loginResult={this.state.loginResult}
                         />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Result from './result';
 
 interface Props {
-	result: Result;
+	result: Result | null;
 }
 
 interface State {

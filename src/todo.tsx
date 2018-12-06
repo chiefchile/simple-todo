@@ -5,12 +5,26 @@ import { TitleList } from './title-list';
 import { ViewNote } from './view-note';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { API_HOST } from './index';
+import Title from './title';
+import Note from './note';
+import Result from './result';
 
-export default class Todo extends Component {
-	constructor(props) {
+interface State {
+	titles: Title[],
+	selectedNote: Note | null,
+	isNewNote: boolean,
+	result: Result | null
+}
+
+interface Props {
+	user: string
+}
+
+export default class Todo extends Component<Props, State> {
+	constructor(props: Props) {
 		super(props);
 		this.state = {
-			titles: [{ title: null, _id: null }],
+			titles: [],
 			selectedNote: null,
 			isNewNote: false,
 			result: null
@@ -30,7 +44,7 @@ export default class Todo extends Component {
 			});
 	}
 
-	viewNote(_id, result) {
+	viewNote(_id: string | undefined, result: Result | null) {
 		axios.get(`${API_HOST}/note/${_id}`)
 			.then(res => {
 				if (res.data.code !== 0) {
@@ -41,7 +55,7 @@ export default class Todo extends Component {
 			});
 	}
 
-	createNote(note) {
+	createNote(note: Note) {
 		axios.post(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
@@ -53,7 +67,7 @@ export default class Todo extends Component {
 			});
 	}
 
-	updateNote(note) {
+	updateNote(note: Note) {
 		axios.put(`${API_HOST}/note`, note)
 			.then(res => {
 				console.log(res);
@@ -65,7 +79,7 @@ export default class Todo extends Component {
 			})
 	}
 
-	deleteNote(_id) {
+	deleteNote(_id: string) {
 		axios.delete(`${API_HOST}/note/${_id}`)
 			.then(res => {
 				console.log(res);
@@ -88,14 +102,14 @@ export default class Todo extends Component {
 					<Col md={3}>
 						<a href="#" onClick={() => this.toNewNote()}>New Note</a>
 						<hr />
-						<TitleList titles={this.state.titles} onClick={(_id) => this.viewNote(_id)} />
+						<TitleList titles={this.state.titles} onClick={(_id: string) => this.viewNote(_id, null)} />
 					</Col>
 					<Col md={9}>
 						{
 							this.state.selectedNote ?
 								<ViewNote note={this.state.selectedNote}
 									onUpdate={(note) => this.updateNote(note)}
-									onDelete={(_id) => this.deleteNote(_id)}
+									onDelete={(_id: string) => this.deleteNote(_id)}
 									result={this.state.result} /> :
 								null
 						}

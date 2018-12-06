@@ -1,8 +1,17 @@
 import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Message } from './message';
+import Note from './note';
+import Result from './result';
 
-export const ViewNote = ({ note, onUpdate, onDelete, result }) => {
+export const ViewNote = ({ note, onUpdate, onDelete, result }:
+	{
+		note: Note,
+		onUpdate(note: Note): void,
+		onDelete(noteId: string | undefined): void,
+		result: Result | null
+
+	}) => {
 	console.log(note);
 
 	return (

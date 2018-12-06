@@ -8,7 +8,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }:
 	{
 		onSubmit(user: User): void, 
 		onLoginAsGuest(): void, 
-		loginResult: Result
+		loginResult: Result | null
 	}) => {
 
 	return (
