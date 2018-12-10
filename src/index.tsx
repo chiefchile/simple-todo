@@ -7,7 +7,7 @@ import axios from 'axios';
 import User from './user';
 import Result from './result';
 
-export const API_HOST = 'http://localhost:3002';
+export const API_HOST = 'http://10.1.56.21:3002';
 // export const API_HOST = 'https://alex-simple-todo.herokuapp.com';
 
 interface State {

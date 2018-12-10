@@ -31,7 +31,7 @@ export const NewNote = ({ onSubmit, user }: Props) => {
 						<div className="form-group">
 							<label className="col-md-1 control-label">Note: </label>
 							<div className="col-md-9">
-								<Field required className="form-control" id="note" component="textarea" name="note" />
+								<Field className="form-control" id="note" component="textarea" name="note" />
 							</div>
 						</div>
 

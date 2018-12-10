@@ -31,7 +31,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
 						<div className="form-group">
 							<label className="col-md-1 control-label">Title: </label>
 							<div className="col-md-9">
-								<Field className="form-control" id="title" type="text" name="title" />
+								<Field required className="form-control" id="title" type="text" name="title" />
 							</div>
 						</div>
 
