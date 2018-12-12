@@ -29,6 +29,7 @@ export default class Todo extends Component<Props, State> {
 			isNewNote: false,
 			result: null
 		};
+		this.viewNote = this.viewNote.bind(this);
 	}
 
 	componentDidMount() {
@@ -102,7 +103,7 @@ export default class Todo extends Component<Props, State> {
 					<Col md={3}>
 						<a href="#" onClick={() => this.toNewNote()}>New Note</a>
 						<hr />
-						<TitleList titles={this.state.titles} onClick={(_id: string) => this.viewNote(_id, null)} />
+						<TitleList titles={this.state.titles} onClick={this.viewNote} />
 					</Col>
 					<Col md={9}>
 						{
