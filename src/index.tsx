@@ -1,14 +1,11 @@
 import { default as React, Component } from 'react';
 import ReactDOM from 'react-dom';
-import ToDo from './todo';
+import {default as Todo, API_HOST} from './todo';
 import './index.css';
 import { Login } from './login';
 import axios from 'axios';
 import User from './user';
 import Result from './result';
-
-export const API_HOST = 'http://localhost:3002';
-// export const API_HOST = 'https://alex-simple-todo.herokuapp.com';
 
 interface State {
     username: string,
@@ -45,7 +42,7 @@ class Main extends Component<any, State> {
             <div>
                 {
                     this.state.username ?
-                        <ToDo user={this.state.username} /> :
+                        <Todo user={this.state.username} /> :
                         <Login onSubmit={(user: User) => this.login(user)}
                             onLoginAsGuest={() => this.loginAsGuest()}
                             loginResult={this.state.loginResult}

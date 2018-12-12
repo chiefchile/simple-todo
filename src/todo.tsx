@@ -4,10 +4,12 @@ import { NewNote } from './new-note';
 import { TitleList } from './title-list';
 import { ViewNote } from './view-note';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { API_HOST } from './index';
 import Title from './title';
 import Note from './note';
 import Result from './result';
+
+export const API_HOST = 'http://localhost:3002';
+// export const API_HOST = 'https://alex-simple-todo.herokuapp.com';
 
 interface State {
 	titles: Title[],
