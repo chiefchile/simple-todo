@@ -48,7 +48,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
 						</div>
 
 						<div className="col-md-1 col-md-offset-4 col-xs-2">
-							<button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+							<button id="button-login" className="btn btn-primary" type="submit" disabled={isSubmitting}>
 								Login
 				      </button>
 						</div>
