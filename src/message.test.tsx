@@ -26,3 +26,13 @@ it('style should be "alert alert-danger" if result is error', () => {
   const message = getByText(msg);
   expect(message.className).toBe('alert alert-danger');
 });
+
+it('should display nothing if there is no result', () => {
+  const {queryByRole} = render(
+    <Message />,
+  )
+  
+  const message = queryByRole('alert');
+  expect(message).not.toBeTruthy();
+});
+
