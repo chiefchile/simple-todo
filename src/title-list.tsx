@@ -10,7 +10,7 @@ interface Props {
 export const TitleList = (props: Props) => {
 
 	return (
-		<div>
+		<div id="titles">
 			<h4>Notes</h4>
 			<ul>
 				{props.titles.map((title: Title) =>
