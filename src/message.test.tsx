@@ -29,7 +29,7 @@ it('style should be "alert alert-danger" if result is error', () => {
 
 it('should display nothing if there is no result', () => {
   const {queryByRole} = render(
-    <Message />,
+    <Message result={null}/>,
   )
   
   const message = queryByRole('alert');

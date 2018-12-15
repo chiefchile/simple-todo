@@ -10,7 +10,7 @@ Enzyme.configure({adapter: new Adapter()});
 it('renders correctly', () => {
   const titles: Title[] = [{title: 'Title2', _id: '1'}];
   const tree = renderer
-    .create(<TitleList titles={titles} />)
+    .create(<TitleList titles={titles} onClick={jest.fn()} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
