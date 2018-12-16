@@ -3,7 +3,9 @@ import {default as Todo, API_HOST} from './todo';
 import {render, fireEvent, cleanup, wait, within, waitForElement} from 'react-testing-library'
 import axios from 'axios';
 
+let todo = null;
 const user = 'testuser';
+
 beforeEach((done) => {
   axios.delete(`${API_HOST}/note/deleteByUser/${user}`)
 			.then(res => {
@@ -24,15 +26,16 @@ it('should create a note', async () => {
   const note = 'Note1';
   const _id = '1';
   
-  const { getByText, getByLabelText, getByRole } = render(
+  todo = render(
     <Todo user={user} />,
   );
   
-  await createNote({title: title, note: note}, getByText, waitForElement, getByLabelText);
-  await viewNote({title: title, note: note}, resultMsg, getByText, waitForElement, getByLabelText);
+  await createNote({title: title, note: note});
+  await viewNote({title: title, note: note}, resultMsg);
 });
 
-const createNote = async (note, getByText, waitForElement, getByLabelText) => {
+const createNote = async (note) => {
+  const {getByText, getByLabelText} = todo;
   fireEvent.click(getByText('New Note', {selector: 'a'}));
   await waitForElement(() => getByText('New Note', {selector: 'h4'}));
   fireEvent.change(getByLabelText('Title:'), {target: {value: note.title}});
@@ -40,8 +43,9 @@ const createNote = async (note, getByText, waitForElement, getByLabelText) => {
   fireEvent.click(getByText('Create note'));
 }
 
-const viewNote = async (note, resultMsg, getByText, waitForElement, getByLabelText) => {
-  await waitForElement(() => getByText('View Note'));
+const viewNote = async (note, resultMsg) => {
+  const {getByText, getByLabelText, getByDisplayValue} = todo;
+  await waitForElement(() => getByDisplayValue(note.title));
   const inputTitle = getByLabelText('Title:');
   expect(inputTitle.value).toBe(note.title);
   const textAreaNote = getByLabelText('Note:');
@@ -50,35 +54,42 @@ const viewNote = async (note, resultMsg, getByText, waitForElement, getByLabelTe
 }
 
 it('should update a note', async () => {
-  const { getByText, getByLabelText, getByRole } = render(
+  todo = render(
     <Todo user={user} />,
   );
   
   const oldNote = {title: 'Old Title', note: 'old note'};
   const newNote = {title: 'New Title', note: 'new note'};
-  await createNote(oldNote, getByText, waitForElement, getByLabelText);
-  await viewNote(oldNote, 'Note created', getByText, waitForElement, getByLabelText);
-  updateNote(newNote, getByText, waitForElement, getByLabelText);
-  await viewNote(newNote, 'Note updated', getByText, waitForElement, getByLabelText);
+  await createNote(oldNote);
+  await viewNote(oldNote, 'Note created');
+  updateNote(newNote);
+  await viewNote(newNote, 'Note updated');
 });
 
-const updateNote = (newNote, getByText, waitForElement, getByLabelText) => {
+const updateNote = (newNote) => {
+  const {getByText, getByLabelText} = todo;
   fireEvent.change(getByLabelText('Title:'), {target: {value: newNote.title}});
   fireEvent.change(getByLabelText('Note:'), {target: {value: newNote.note}});
   fireEvent.click(getByText('Update note'));
 }
 
 it('should delete a note', async () => {
-  const { getByText, getByLabelText, getByRole, queryByText } = render(
+  todo = render(
     <Todo user={user} />,
   );
   
   const note = {title: 'Title to be deleted', note: 'delete this'};
-  await createNote(note, getByText, waitForElement, getByLabelText);
-  await viewNote(note, 'Note created', getByText, waitForElement, getByLabelText);
+  await createNote(note);
+  await viewNote(note, 'Note created');
+  await deleteNote();
+  
+});
+
+const deleteNote = async () => {
+  const { queryByText, getByText } = todo;
   fireEvent.click(getByText('Delete note'));
   await wait(() => {
-	const deletedTitle = queryByText('Title to be deleted', {selector: 'a'});
+    const deletedTitle = queryByText('Title to be deleted', {selector: 'a'});
     expect(deletedTitle).toBeFalsy();
   });
-});
+}
