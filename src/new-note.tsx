@@ -2,6 +2,7 @@ import { default as React } from 'react';
 import { Formik, Form, Field } from 'formik';
 import './new-note.css';
 import Note from './note';
+import { NoteDetails } from './note-details';
 
 interface Props {
 	onSubmit(note: Note): void,
@@ -21,19 +22,7 @@ export const NewNote = ({ onSubmit, user }: Props) => {
 			>
 				{({ isSubmitting }) => (
 					<Form className="form-horizontal">
-						<div className="form-group">
-							<label className="col-md-1 control-label">Title: </label>
-							<div className="col-md-9">
-								<Field required className="form-control" id="title" type="text" name="title" />
-							</div>
-						</div>
-
-						<div className="form-group">
-							<label className="col-md-1 control-label">Note: </label>
-							<div className="col-md-9">
-								<Field className="form-control" id="note" component="textarea" name="note" />
-							</div>
-						</div>
+						<NoteDetails />
 
 						<div className="col-md-3 col-md-offset-1">
 							<button className="btn btn-primary" type="submit" disabled={isSubmitting}>

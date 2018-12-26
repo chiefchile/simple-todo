@@ -14,12 +14,20 @@
     "yup": "^0.26.6"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.12",
     "@types/react": "^16.7.13",
     "@types/react-bootstrap": "^0.32.15",
     "@types/react-dom": "^16.0.11",
+    "@types/react-test-renderer": "^16.0.3",
+    "axios-mock-adapter": "^1.15.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jest": "^23.6.0",
     "react-test-renderer": "^16.6.3",
+    "react-testing-library": "^5.3.2",
     "typescript": "^3.2.1"
   },
   "scripts": {

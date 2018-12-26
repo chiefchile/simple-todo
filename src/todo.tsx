@@ -4,10 +4,12 @@ import { NewNote } from './new-note';
 import { TitleList } from './title-list';
 import { ViewNote } from './view-note';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { API_HOST } from './index';
 import Title from './title';
 import Note from './note';
 import Result from './result';
+
+export const API_HOST = 'http://localhost:3002';
+//export const API_HOST = 'https://simple-todo-backend.herokuapp.com';
 
 interface State {
 	titles: Title[],
@@ -29,6 +31,7 @@ export default class Todo extends Component<Props, State> {
 			isNewNote: false,
 			result: null
 		};
+		this.viewNote = this.viewNote.bind(this);
 	}
 
 	componentDidMount() {
@@ -102,7 +105,7 @@ export default class Todo extends Component<Props, State> {
 					<Col md={3}>
 						<a href="#" onClick={() => this.toNewNote()}>New Note</a>
 						<hr />
-						<TitleList titles={this.state.titles} onClick={(_id: string) => this.viewNote(_id, null)} />
+						<TitleList titles={this.state.titles} onClick={this.viewNote} />
 					</Col>
 					<Col md={9}>
 						{

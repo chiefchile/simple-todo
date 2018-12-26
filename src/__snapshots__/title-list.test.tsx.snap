@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id="titles"
+>
+  <h4>
+    Notes
+  </h4>
+  <ul>
+    <li>
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        Title2
+      </a>
+    </li>
+  </ul>
+</div>
+`;
