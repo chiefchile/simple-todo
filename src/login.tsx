@@ -53,7 +53,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
                   id="password"
                   type="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
                 />
               </div>
             </div>
