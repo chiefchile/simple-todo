@@ -121,7 +121,7 @@ export default class Todo extends Component<Props, State> {
             </div>
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
           </div>
-          <div className="col-md-9 col-md-pull-3">
+          <div className="col-md-8 col-md-offset-1 col-md-pull-3">
             {this.state.selectedNote ? (
               <ViewNote
                 note={this.state.selectedNote}
