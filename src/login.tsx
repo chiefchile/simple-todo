@@ -62,7 +62,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
                 </div>
 
                 <div className="form-group">
-                  <div className="col-md-3 col-md-offset-1 col-xs-2">
+                  <div className="col-md-3 col-md-offset-1 col-xs-3">
                     <button
                       id="button-login"
                       className="btn btn-primary2"
