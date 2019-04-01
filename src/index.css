@@ -10,6 +10,7 @@
   --gray1: #f2f2f2;
   --gray2: #e6e6e6;
   --gray3: #d9d9d9;
+  --gray4: #555;
   --gray5: #333;
 }
 
@@ -67,7 +68,7 @@
   padding-left: 0px;
 }
 #todo-list a {
-  color: var(--gray5);
+  color: var(--gray4);
   font-size: 13px;
 }
 .logo-main {
