@@ -4,15 +4,19 @@ exports[`renders correctly 1`] = `
 <div
   id="titles"
 >
-  <h4>
-    Notes
-  </h4>
-  <ul>
+  <ul
+    id="todo-list"
+  >
     <li>
       <a
         href="#"
         onClick={[Function]}
       >
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-list-alt"
+        />
+         
         Title2
       </a>
     </li>

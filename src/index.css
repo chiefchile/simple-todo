@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Merriweather");
 
 :root {
-  --primary-color3: #40a3c1;
-  --primary-color4: #3892ad;
+  --primary-color1: #176bb5;
+  --primary-color3: #145b9b;
+  --primary-color4: #125087;
+
+  --secondary-color3: #f0502a;
+
+  --gray1: #f2f2f2;
+  --gray2: #e6e6e6;
+  --gray5: #333;
 }
 
 #note {
@@ -16,29 +23,59 @@
   	transition: visibility 0s 2s, opacity 2s linear; */
 }
 
-#logo-text {
-  font-family: "Merriweather", sans-serif;
-  font-weight: bold;
-  color: var(--primary-color3);
-  margin-bottom: 1em;
-}
-
-.login {
-  border-radius: 15px;
-  margin-top: 100px;
-  border: 1px solid #d9d9d9;
-}
-
 .btn-primary2 {
   background-color: var(--primary-color3);
   color: #ffffff;
 }
-
 .btn-primary2:hover {
   background-color: var(--primary-color4);
   color: #ffffff;
 }
-
 .btn-primary2:focus {
   color: #ffffff;
+}
+.logo-text {
+  font-size: 25px;
+  font-family: "Merriweather", sans-serif;
+  font-weight: bold;
+  color: var(--primary-color3);
+  margin-bottom: 50px;
+  text-align: center;
+}
+#logo-slash {
+  color: var(--secondary-color3);
+}
+.login {
+  border-radius: 15px;
+  margin-top: 100px;
+  border: 1px solid var(--gray2);
+}
+#sidebar {
+  /* border: 1px solid var(--gray2);
+  background-color: var(--gray1);
+  height: 1000px;
+  overflow-y: auto; */
+}
+@media (max-width: 768px) {
+  #sidebar {
+    height: 100%;
+  }
+}
+#todo-list {
+  list-style-type: none;
+  padding-left: 0px;
+}
+#todo-list a {
+  color: var(--gray5);
+  font-size: 13px;
+}
+.logo-main {
+  text-align: left;
+  margin-bottom: 30px;
+}
+.toolbar {
+  margin-bottom: 20px;
+}
+.page-header {
+  border-bottom: 1px solid var(--primary-color1);
 }
