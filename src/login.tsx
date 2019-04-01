@@ -17,7 +17,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
       <div className="row">
         <div className="login col-sm-3 col-sm-offset-4">
           <div className="row">
-            <div className="col-xs-6 col-xs-offset-3">
+            <div className="col-xs-8 col-xs-offset-2">
               <Logo isCenter={true} />
             </div>
           </div>
