@@ -105,7 +105,7 @@ export default class Todo extends Component<Props, State> {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <div className="col-md-3 col-md-push-9" id="sidebar">
             <Logo isCenter={false} />
