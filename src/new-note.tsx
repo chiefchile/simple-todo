@@ -24,14 +24,16 @@ export const NewNote = ({ onSubmit, user }: Props) => {
           <Form className="form-horizontal">
             <NoteDetails />
 
-            <div className="col-md-3 col-md-offset-1">
-              <button
-                className="btn btn-primary2"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Create note
-              </button>
+            <div className="form-group">
+              <div className="col-md-3 col-md-offset-1">
+                <button
+                  className="btn btn-primary2"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Create note
+                </button>
+              </div>
             </div>
           </Form>
         )}

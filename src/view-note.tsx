@@ -36,7 +36,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
           <Form className="form-horizontal">
             <NoteDetails />
 
-            <div className="row">
+            <div className="form-group">
               <div className="col-md-2 col-md-offset-1 col-xs-3">
                 <button
                   className="btn btn-primary2"
