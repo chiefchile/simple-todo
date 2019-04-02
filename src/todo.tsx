@@ -8,8 +8,8 @@ import Note from "./note";
 import Result from "./result";
 import { Logo } from "./logo";
 
-//export const API_HOST = "http://localhost:3002";
-export const API_HOST = 'https://simple-todo-backend.herokuapp.com';
+export const API_HOST = "http://localhost:3002";
+// export const API_HOST = 'https://simple-todo-backend.herokuapp.com';
 
 interface State {
   titles: Title[];

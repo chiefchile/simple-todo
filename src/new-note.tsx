@@ -12,7 +12,7 @@ interface Props {
 export const NewNote = ({ onSubmit, user }: Props) => {
   return (
     <div>
-      <h4 className="page-header">New Note</h4>
+      <h3 className="page-header">New Note</h3>
       <Formik
         initialValues={{ title: "", note: "", user: user }}
         onSubmit={(values, { setSubmitting }) => {
