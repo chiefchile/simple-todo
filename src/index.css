@@ -80,7 +80,7 @@
 }
 .page-header {
   border-bottom: 1px solid var(--gray2);
-  font-weight: bold;
+  font-weight: 600;
 }
 .form-control:focus {
   border-color: var(--primary-color1);
