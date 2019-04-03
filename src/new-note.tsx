@@ -21,20 +21,16 @@ export const NewNote = ({ onSubmit, user }: Props) => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className="form-horizontal">
+          <Form>
             <NoteDetails />
 
-            <div className="form-group">
-              <div className="col-md-3 col-md-offset-1">
-                <button
-                  className="btn btn-primary2"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Create note
-                </button>
-              </div>
-            </div>
+            <button
+              className="btn btn-primary2"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              Create note
+            </button>
           </Form>
         )}
       </Formik>

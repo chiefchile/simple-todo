@@ -7,7 +7,7 @@
 
   --secondary-color3: #ff4800;
 
-  --gray1: #f2f2f2;
+  --gray1: #f7f7f7;
   --gray2: #e6e6e6;
   --gray3: #d9d9d9;
   --gray4: #555;
@@ -16,7 +16,7 @@
 
 #note {
   white-space: pre-line;
-  height: 250px;
+  height: 300px;
 }
 
 .fade-out {
@@ -53,14 +53,20 @@
   border: 1px solid var(--gray3);
 }
 #sidebar {
-  /* border: 1px solid var(--gray2);
+  border-right: 1px solid var(--gray2);
   background-color: var(--gray1);
-  height: 1000px;
-  overflow-y: auto; */
+  height: 100%;
+  overflow-y: auto;
+  position: fixed;
+  z-index: 1000;
+  display: block;
 }
 @media (max-width: 768px) {
   #sidebar {
-    height: 100%;
+    height: auto;
+    position: relative;
+    border: 0;
+    background-color: #ffffff;
   }
 }
 #todo-list {
@@ -69,7 +75,7 @@
 }
 #todo-list a {
   color: var(--gray5);
-  font-size: 14px;
+  font-size: 15px;
 }
 .logo-main {
   text-align: left;
