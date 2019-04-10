@@ -109,7 +109,7 @@ export default class Todo extends Component<Props, State> {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-3 col-md-offset-1" id="sidebar">
+          <div className="col-md-3" id="sidebar">
             <Logo isCenter={false} />
             <div className="toolbar">
               <button
@@ -123,7 +123,7 @@ export default class Todo extends Component<Props, State> {
             </div>
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
           </div>
-          <div className="col-md-7 col-md-offset-4">
+          <div className="col-md-5 col-md-offset-3">
             {this.state.selectedNote ? (
               <ViewNote
                 note={this.state.selectedNote}
