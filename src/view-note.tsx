@@ -36,7 +36,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
           <Form>
             <NoteDetails />
 
-            <div className="col-md-3 col-xs-4">
+            <div className="col-md-4 col-xs-4">
               <button
                 className="btn btn-primary2"
                 type="submit"
