@@ -74,7 +74,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
                   </div>
                   <div className="col-md-4 col-xs-3">
                     <button
-                      className="btn btn-primary2"
+                      className="btn btn-default"
                       onClick={() => onLoginAsGuest()}
                       type="button"
                     >
