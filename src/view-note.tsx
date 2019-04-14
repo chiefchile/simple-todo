@@ -48,7 +48,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
 
             <div className="col-md-3 col-xs-4">
               <button
-                className="btn btn-default"
+                className="btn btn-default btn-adjacent"
                 onClick={() => onDelete(note._id)}
                 type="button"
               >
