@@ -38,6 +38,9 @@
 .btn-primary2:focus {
   color: #ffffff;
 }
+.btn-default {
+  margin-left: 5px;
+}
 .logo-text {
   font-size: 25px;
   font-family: "Merriweather", sans-serif;
