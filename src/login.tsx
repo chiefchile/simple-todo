@@ -13,9 +13,9 @@ interface Props {
 
 export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
   return (
-    <div className="container-fluid">
+    <div className="container login-container">
       <div className="row">
-        <div className="login col-sm-3 col-sm-offset-4">
+        <div className="login col-sm-3 col-centered">
           <div className="row">
             <div className="col-xs-8 col-xs-offset-2">
               <Logo isCenter={true} />

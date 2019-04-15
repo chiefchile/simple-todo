@@ -54,7 +54,7 @@
 }
 .login {
   border-radius: 15px;
-  margin-top: 100px;
+  margin-top: 200px;
   border: 1px solid var(--gray3);
 }
 #sidebar {
@@ -101,4 +101,16 @@
   border-color: var(--primary-color2);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.login-container {
+  margin-top: 100px;
+}
+@media (max-width: 768px) {
+  .login-container {
+    margin-top: 0;
+  }
 }
