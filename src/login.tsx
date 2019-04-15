@@ -13,7 +13,7 @@ interface Props {
 
 export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
   return (
-    <div className="container login-container">
+    <div className="container-fluid login-container">
       <div className="row">
         <div className="login col-sm-3 col-centered">
           <div className="row">
