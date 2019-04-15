@@ -35,8 +35,6 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
         {({ isSubmitting }) => (
           <Form>
             <NoteDetails />
-
-            <div className="col-md-4 col-xs-4">
               <button
                 className="btn btn-primary2"
                 type="submit"
@@ -44,9 +42,6 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
               >
                 Update note
               </button>
-            </div>
-
-            <div className="col-md-3 col-xs-4">
               <button
                 className="btn btn-default btn-adjacent"
                 onClick={() => onDelete(note._id)}
@@ -54,7 +49,6 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
               >
                 Delete note
               </button>
-            </div>
           </Form>
         )}
       </Formik>
