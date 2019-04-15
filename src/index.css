@@ -74,6 +74,9 @@
     background-color: #ffffff;
   }
 }
+#main-content {
+  margin-bottom: 30px;
+}
 #todo-list {
   list-style-type: none;
   padding-left: 0px;

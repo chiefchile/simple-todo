@@ -76,7 +76,7 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
                       onClick={() => onLoginAsGuest()}
                       type="button"
                     >
-                      Login as Guest
+                      Guest Login
                     </button>
                   </div>
                 </div>
