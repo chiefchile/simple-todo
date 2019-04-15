@@ -35,20 +35,24 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
         {({ isSubmitting }) => (
           <Form>
             <NoteDetails />
-              <button
-                className="btn btn-primary2"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Update note
-              </button>
-              <button
-                className="btn btn-default btn-adjacent"
-                onClick={() => onDelete(note._id)}
-                type="button"
-              >
-                Delete note
-              </button>
+            <div className="form-group">
+              <div className="col-md-12">
+                <button
+                  className="btn btn-primary2"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Update note
+                </button>
+                <button
+                  className="btn btn-default btn-adjacent"
+                  onClick={() => onDelete(note._id)}
+                  type="button"
+                >
+                  Delete note
+                </button>
+              </div>
+            </div>
           </Form>
         )}
       </Formik>
