@@ -22,9 +22,15 @@
 }
 
 .fade-out {
-  /* visibility: hidden;
-  	opacity: 0;
-  	transition: visibility 0s 2s, opacity 2s linear; */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+.alert {
+  padding: 5px;
+}
+.empty-msg {
+  height: 52px;
 }
 
 .btn-primary2 {
@@ -42,7 +48,7 @@
   margin-left: 8px;
 }
 .logo-text {
-  font-size: 33px;
+  font-size: 30px;
   font-family: "Open Sans", sans-serif;
   /* font-weight: bold; */
   color: var(--primary-color3);
