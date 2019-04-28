@@ -102,7 +102,7 @@
 .page-header {
   border-bottom: 1px solid var(--gray2);
   font-weight: 600;
-  padding-bottom: 11px;
+  padding-bottom: 15px;
   margin: 40px 0 15px;
   /* color: var(--primary-color3); */
 }
