@@ -27,7 +27,8 @@
   transition: visibility 0s 2s, opacity 2s linear;
 }
 .alert {
-  padding: 6px;
+  padding: 2px;
+  margin-bottom: 15px;
 }
 .empty-msg {
   /*height: 52px;*/
@@ -101,6 +102,8 @@
 .page-header {
   border-bottom: 1px solid var(--gray2);
   font-weight: 600;
+  padding-bottom: 11px;
+  margin: 40px 0 15px;
   /* color: var(--primary-color3); */
 }
 .form-control:focus {
