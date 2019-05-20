@@ -1,6 +1,8 @@
 export default interface IResult {
   code: number;
   msg: string;
+
+  wasSuccessful(): boolean;
 }
 
 export class Result implements IResult {

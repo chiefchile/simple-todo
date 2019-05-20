@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Result } from "./result";
+import IResult from "./result";
 
 interface Props {
-  result: Result | null;
+  result: IResult | null;
 }
 
 interface State {
