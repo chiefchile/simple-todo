@@ -3,12 +3,12 @@ import { Formik, Form, Field } from "formik";
 import { Message } from "./message";
 import User from "./user";
 import { Logo } from "./logo";
-import { Result } from "./result";
+import IResult from "./result";
 
 interface Props {
   onSubmit(user: User): void;
   onLoginAsGuest(): void;
-  loginResult: Result | null;
+  loginResult: IResult | null;
 }
 
 export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
