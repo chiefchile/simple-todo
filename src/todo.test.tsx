@@ -29,7 +29,7 @@ beforeEach(done => {
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-it("should create a note", async () => {
+test("should create a note", async () => {
   const resultMsg = "Note created";
   todo = render(<Todo user={user} />);
   const note: Note = { title: "Title1", note: "Note1", user: user };
@@ -57,7 +57,7 @@ const viewNote = async (note: Note, resultMsg: string) => {
   await waitForElement(() => getByText(resultMsg));
 };
 
-it("should update a note", async () => {
+test("should update a note", async () => {
   todo = render(<Todo user={user} />);
 
   const oldNote: Note = { title: "Old Title", note: "old note", user: user };

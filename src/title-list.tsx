@@ -1,10 +1,10 @@
 import { default as React } from "react";
 import Title from "./title";
-import Result from "./result";
+import IResult from "./result";
 
 interface Props {
   titles: Title[];
-  onClick(_id: string | undefined, result: Result | null): void;
+  onClick(_id: string | undefined, result: IResult | null): void;
 }
 
 export const TitleList = (props: Props) => {

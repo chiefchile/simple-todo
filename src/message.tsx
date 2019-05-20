@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Result from "./result";
+import { Result } from "./result";
 
 interface Props {
   result: Result | null;
@@ -27,7 +27,7 @@ export class Message extends Component<Props, State> {
   setStyle() {
     if (this.props.result) {
       let style = null;
-      if (this.props.result.code === 0) {
+      if (this.props.result.wasSuccessful()) {
         style = "alert alert-success";
       } else {
         style = "alert alert-danger";

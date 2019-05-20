@@ -5,11 +5,11 @@ import "./index.css";
 import { Login } from "./login";
 import axios from "axios";
 import User from "./user";
-import Result from "./result";
+import IResult from "./result";
 
 interface State {
   username: string;
-  loginResult: Result | null;
+  loginResult: IResult | null;
 }
 
 class Main extends Component<any, State> {

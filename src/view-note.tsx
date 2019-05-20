@@ -2,14 +2,14 @@ import { default as React } from "react";
 import { Formik, Form, Field } from "formik";
 import { Message } from "./message";
 import Note from "./note";
-import Result from "./result";
+import IResult from "./result";
 import { NoteDetails } from "./note-details";
 
 interface Props {
   note: Note;
   onUpdate(note: Note): void;
   onDelete(noteId: string | undefined): void;
-  result: Result | null;
+  result: IResult | null;
 }
 
 export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
