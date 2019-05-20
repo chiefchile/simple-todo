@@ -5,7 +5,7 @@ import "./index.css";
 import { Login } from "./login";
 import axios from "axios";
 import User from "./user";
-import IResult from "./result";
+import IResult, { Result } from "./result";
 
 interface State {
   username: string;
@@ -20,11 +20,11 @@ class Main extends Component<any, State> {
 
   login(user: User): void {
     axios
-      .post(`${API_HOST}/login`, user)
+      .post(`${API_HOST}/login/`, user)
       .then(res => {
         console.log(res);
-        if (res.data.code !== 0) {
-          this.setState({ loginResult: res.data });
+        if (res.status != 200) {
+          this.setState({ loginResult: new Result(res.status, "Invalid username/password pair") });
         } else {
           this.setState({ username: user.username });
         }
