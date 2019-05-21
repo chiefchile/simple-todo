@@ -16,7 +16,7 @@ const user = "testuser";
 
 beforeEach(done => {
   axios
-    .delete(`${API_HOST}/note/deleteByUser/${user}`)
+    .get(`${API_HOST}/note/deleteTestData/`)
     .then(res => {
       done();
     })
