@@ -93,6 +93,7 @@ it("should delete a note", async () => {
 });
 
 const deleteNote = async () => {
+  window.confirm = jest.fn(() => true); // always click 'OK'
   const { queryByText, getByText } = todo;
   fireEvent.click(getByText("Delete note"));
   await wait(() => {

@@ -29,6 +29,7 @@
 .alert {
   padding: 2px;
   margin-bottom: 15px;
+  border: 0;
 }
 .empty-msg {
   /*height: 52px;*/

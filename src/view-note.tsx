@@ -44,7 +44,11 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
             </button>
             <button
               className="btn btn-default btn-adjacent"
-              onClick={() => onDelete(note._id)}
+              onClick={(): void => {
+                if (confirm("Delete note?")) {
+                  onDelete(note._id);
+                }
+              }}
               type="button"
             >
               Delete note
