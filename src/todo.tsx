@@ -50,9 +50,6 @@ export default class Todo extends Component<Props, State> {
 
   viewNote(_id: string | undefined, result: IResult | null) {
     axios.get(`${API_HOST}/note/${_id}`).then(res => {
-      if (res.status !== 200) {
-        // TODO: Add err handling / err boundary?
-      }
       console.log(res.data);
       this.setState({
         selectedNote: res.data,
