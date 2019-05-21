@@ -23,14 +23,15 @@ class Main extends Component<any, State> {
       .post(`${API_HOST}/login/`, user)
       .then(res => {
         console.log(res);
-        if (res.status !== 200) {
-          this.setState({ loginResult: new Result(res.status, "Invalid username/password pair") });
-        } else {
-          this.setState({ username: user.username });
-        }
+        this.setState({ username: user.username });
       })
-      .catch(function(error) {
-		this.setState({ loginResult: new Result(res.status, "Invalid username/password pair") });
+      .catch(error => {
+        this.setState({
+          loginResult: new Result(
+            error.response.status,
+            "Invalid username/password pair"
+          )
+        });
         console.log(error);
       });
   }
