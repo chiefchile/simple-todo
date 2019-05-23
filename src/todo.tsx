@@ -34,6 +34,7 @@ export default class Todo extends Component<Props, State> {
       result: null
     };
     this.viewNote = this.viewNote.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
   componentDidMount() {
@@ -102,6 +103,13 @@ export default class Todo extends Component<Props, State> {
     this.setState({ selectedNote: null, isNewNote: true });
   }
 
+  refresh() {
+    if (this.state.selectedNote) {
+      this.viewNote(this.state.selectedNote._id, null);
+    }
+    this.getTitles();
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -116,6 +124,18 @@ export default class Todo extends Component<Props, State> {
               >
                 <span className="glyphicon glyphicon-plus" aria-hidden="true" />{" "}
                 New Note
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-default btn-xs btn-adjacent"
+                onClick={this.refresh}
+              >
+                <span
+                  className="glyphicon glyphicon-refresh"
+                  aria-hidden="true"
+                />{" "}
+                Refresh
               </button>
             </div>
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
