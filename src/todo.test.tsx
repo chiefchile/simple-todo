@@ -101,3 +101,33 @@ const deleteNote = async () => {
     expect(deletedTitle).toBeFalsy();
   });
 };
+
+it("refresh", async () => {
+  todo = render(<Todo user={user} />);
+
+  const note: Note = {
+    title: "title to be refreshed",
+    note: "hello",
+    user: user
+  };
+
+  let createdNote = await createNoteThruApi(note);
+  const updatedNote: Note = { ...createdNote, title: "updated title" };
+  await updateNoteThruApi(updatedNote);
+  await refresh(updatedNote);
+});
+
+const refresh = async (updatedNote: Note) => {
+  const { getByDisplayValue, getByText } = todo;
+  fireEvent.click(getByText("Refresh"));
+  await waitForElement(() => getByText(updatedNote.title));
+};
+
+const updateNoteThruApi = async (note: Note) => {
+  await axios.put(`${API_HOST}/note/${note._id}/`, note);
+};
+
+const createNoteThruApi = async (note: Note): Promise<Note> => {
+  let res = await axios.post(`${API_HOST}/note/`, note);
+  return res.data;
+};
