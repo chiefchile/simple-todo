@@ -7,6 +7,7 @@ import Title from "./title";
 import Note from "./note";
 import { default as IResult, Result } from "./result";
 import { Logo } from "./logo";
+import User from "./user";
 
 // export const API_HOST = "http://localhost:3002";
 // export const API_HOST = "https://simple-todo-backend.herokuapp.com";
@@ -21,7 +22,8 @@ interface State {
 }
 
 interface Props {
-  user: string;
+  user?: User | null;
+  authToken?: string;
 }
 
 export default class Todo extends Component<Props, State> {
@@ -37,20 +39,22 @@ export default class Todo extends Component<Props, State> {
     this.refresh = this.refresh.bind(this);
   }
 
+  axiosConfig = { headers: { Authorization: `Token ${this.props.authToken}` } };
+
   componentDidMount() {
     //console.log('Todo mounted');
     this.getTitles();
   }
 
   getTitles() {
-    axios.get(`${API_HOST}/titles/${this.props.user}`).then(res => {
+    axios.get(`${API_HOST}/titles/`, this.axiosConfig).then(res => {
       // TODO: Add err handling / err boundary?
       this.setState({ titles: res.data });
     });
   }
 
   viewNote(_id: string | undefined, result: IResult | null) {
-    axios.get(`${API_HOST}/note/${_id}`).then(res => {
+    axios.get(`${API_HOST}/note/${_id}/`, this.axiosConfig).then(res => {
       console.log(res.data);
       this.setState({
         selectedNote: res.data,
@@ -62,7 +66,7 @@ export default class Todo extends Component<Props, State> {
 
   createNote(note: Note) {
     axios
-      .post(`${API_HOST}/note/`, note)
+      .post(`${API_HOST}/note/`, note, this.axiosConfig)
       .then(res => {
         console.log(res);
         this.viewNote(res.data._id, new Result(res.status, "Note created"));
@@ -75,7 +79,7 @@ export default class Todo extends Component<Props, State> {
 
   updateNote(note: Note) {
     axios
-      .put(`${API_HOST}/note/${note._id}/`, note)
+      .put(`${API_HOST}/note/${note._id}/`, note, this.axiosConfig)
       .then(res => {
         console.log(res);
         this.viewNote(note._id, new Result(res.status, "Note updated"));
@@ -88,7 +92,7 @@ export default class Todo extends Component<Props, State> {
 
   deleteNote(_id: string) {
     axios
-      .delete(`${API_HOST}/note/${_id}/`)
+      .delete(`${API_HOST}/note/${_id}/`, this.axiosConfig)
       .then(res => {
         console.log(res);
         this.setState({ selectedNote: null, isNewNote: false });
@@ -150,10 +154,7 @@ export default class Todo extends Component<Props, State> {
               />
             ) : null}
             {this.state.isNewNote ? (
-              <NewNote
-                onSubmit={note => this.createNote(note)}
-                user={this.props.user}
-              />
+              <NewNote onSubmit={note => this.createNote(note)} />
             ) : null}
           </div>
         </div>

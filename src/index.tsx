@@ -8,22 +8,22 @@ import User from "./user";
 import IResult, { Result } from "./result";
 
 interface State {
-  username: string;
   loginResult: IResult | null;
+  authToken?: string;
 }
 
 class Main extends Component<any, State> {
   state = {
-    username: "",
-    loginResult: null
+    loginResult: null,
+    authToken: undefined
   };
 
   login(user: User): void {
     axios
-      .post(`${API_HOST}/login/`, user)
+      .post(`${API_HOST}/api-token-auth/`, user)
       .then(res => {
         console.log(res);
-        this.setState({ username: user.username });
+        this.setState({ authToken: res.data.token });
       })
       .catch(error => {
         this.setState({
@@ -37,14 +37,15 @@ class Main extends Component<any, State> {
   }
 
   loginAsGuest(): void {
-    this.setState({ username: "guest" });
+    let guest: User = { username: "guest", password: "guest" };
+    this.login(guest);
   }
 
   render() {
     return (
       <div>
-        {this.state.username ? (
-          <Todo user={this.state.username} />
+        {this.state.authToken ? (
+          <Todo authToken={this.state.authToken} />
         ) : (
           <Login
             onSubmit={(user: User) => this.login(user)}

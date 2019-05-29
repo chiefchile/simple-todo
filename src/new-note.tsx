@@ -3,18 +3,18 @@ import { Formik, Form, Field } from "formik";
 import "./new-note.css";
 import Note from "./note";
 import { NoteDetails } from "./note-details";
+import User from "./user";
 
 interface Props {
   onSubmit(note: Note): void;
-  user: string;
 }
 
-export const NewNote = ({ onSubmit, user }: Props) => {
+export const NewNote = ({ onSubmit }: Props) => {
   return (
     <div>
       <h3 className="page-header">New Note</h3>
       <Formik
-        initialValues={{ title: "", note: "", user: user }}
+        initialValues={{ title: "", note: "" }}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
           onSubmit(values);
