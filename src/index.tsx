@@ -12,7 +12,7 @@ interface State {
   authToken?: string;
 }
 
-class Main extends Component<any, State> {
+export class Main extends Component<any, State> {
   state = {
     loginResult: null,
     authToken: undefined

@@ -10,9 +10,26 @@ import {
 } from "react-testing-library";
 import axios from "axios";
 import Note from "./note";
+import User from "./user";
 
 let todo: any = null;
 const user = "testuser";
+let authToken: string = "";
+let axiosConfig: any = null;
+
+beforeAll(done => {
+  let testuser: User = { username: "testuser", password: "testuser" };
+  axios
+    .post(`${API_HOST}/api-token-auth/`, testuser)
+    .then(res => {
+      authToken = res.data.token;
+      axiosConfig = { headers: { Authorization: `Token ${authToken}` } };
+      done();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
 
 beforeEach(done => {
   axios
@@ -31,7 +48,7 @@ afterEach(cleanup);
 
 test("should create a note", async () => {
   const resultMsg = "Note created";
-  todo = render(<Todo user={user} />);
+  todo = render(<Todo authToken={authToken} />);
   const note: Note = { title: "Title1", note: "Note1", user: user };
   await createNote(note);
   await viewNote(note, resultMsg);
@@ -58,7 +75,7 @@ const viewNote = async (note: Note, resultMsg: string) => {
 };
 
 test("should update a note", async () => {
-  todo = render(<Todo user={user} />);
+  todo = render(<Todo authToken={authToken} />);
 
   const oldNote: Note = { title: "Old Title", note: "old note", user: user };
   const newNote: Note = { title: "New Title", note: "new note", user: user };
@@ -80,7 +97,7 @@ const updateNote = (newNote: Note) => {
 };
 
 it("should delete a note", async () => {
-  todo = render(<Todo user={user} />);
+  todo = render(<Todo authToken={authToken} />);
 
   const note: Note = {
     title: "Title to be deleted",
@@ -103,7 +120,7 @@ const deleteNote = async () => {
 };
 
 it("refresh", async () => {
-  todo = render(<Todo user={user} />);
+  todo = render(<Todo authToken={authToken} />);
 
   const note: Note = {
     title: "title to be refreshed",
@@ -124,10 +141,10 @@ const refresh = async (updatedNote: Note) => {
 };
 
 const updateNoteThruApi = async (note: Note) => {
-  await axios.put(`${API_HOST}/note/${note._id}/`, note);
+  await axios.put(`${API_HOST}/note/${note._id}/`, note, axiosConfig);
 };
 
 const createNoteThruApi = async (note: Note): Promise<Note> => {
-  let res = await axios.post(`${API_HOST}/note/`, note);
+  let res = await axios.post(`${API_HOST}/note/`, note, axiosConfig);
   return res.data;
 };

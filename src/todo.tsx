@@ -22,7 +22,6 @@ interface State {
 }
 
 interface Props {
-  user?: User | null;
   authToken?: string;
 }
 
