@@ -8,6 +8,7 @@ import Note from "./note";
 import { default as IResult, Result } from "./result";
 import { Logo } from "./logo";
 import User from "./user";
+import { Toolbar } from "./toolbar";
 
 // export const API_HOST = "http://localhost:3002";
 // export const API_HOST = "https://simple-todo-backend.herokuapp.com";
@@ -36,6 +37,7 @@ export default class Todo extends Component<Props, State> {
     };
     this.viewNote = this.viewNote.bind(this);
     this.refresh = this.refresh.bind(this);
+    this.toNewNote = this.toNewNote.bind(this);
   }
 
   axiosConfig = { headers: { Authorization: `Token ${this.props.authToken}` } };
@@ -119,28 +121,7 @@ export default class Todo extends Component<Props, State> {
         <div className="row">
           <div className="col-md-3" id="sidebar">
             <Logo isCenter={false} />
-            <div className="toolbar">
-              <button
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={() => this.toNewNote()}
-              >
-                <span className="glyphicon glyphicon-plus" aria-hidden="true" />{" "}
-                New Note
-              </button>
-
-              <button
-                type="button"
-                className="btn btn-default btn-xs btn-adjacent"
-                onClick={this.refresh}
-              >
-                <span
-                  className="glyphicon glyphicon-refresh"
-                  aria-hidden="true"
-                />{" "}
-                Refresh
-              </button>
-            </div>
+            <Toolbar toNewNote={this.toNewNote} refresh={this.refresh} />
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
           </div>
           <div className="col-md-5 col-md-offset-3" id="main-content">
