@@ -7,12 +7,12 @@ import {
   within,
   waitForElement
 } from "react-testing-library";
-import { App } from "./app";
+import { App } from "../app";
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-test("login", async () => {
+test("login integration test", async () => {
   let app = render(<App />);
   const { getByText, getByLabelText, getByPlaceholderText } = app;
   fireEvent.change(getByPlaceholderText("Username"), {

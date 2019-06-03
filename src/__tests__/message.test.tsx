@@ -1,7 +1,7 @@
 import React from "react";
-import { Message } from "./message";
+import { Message } from "../message";
 import { render, fireEvent, cleanup, wait } from "react-testing-library";
-import { Result } from "./result";
+import { Result } from "../result";
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);

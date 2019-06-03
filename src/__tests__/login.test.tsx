@@ -1,5 +1,5 @@
 import React from "react";
-import { Login } from "./login";
+import { Login } from "../login";
 import { render, fireEvent, cleanup, wait } from "react-testing-library";
 
 // automatically unmount and cleanup DOM after the test is finished.

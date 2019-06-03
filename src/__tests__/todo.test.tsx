@@ -1,5 +1,5 @@
 import React from "react";
-import { default as Todo, API_HOST } from "./todo";
+import { default as Todo, API_HOST } from "../todo";
 import {
   render,
   fireEvent,
@@ -9,8 +9,8 @@ import {
   waitForElement
 } from "react-testing-library";
 import axios from "axios";
-import Note from "./note";
-import User from "./user";
+import Note from "../note";
+import User from "../user";
 
 let todo: any = null;
 const user = "testuser";
