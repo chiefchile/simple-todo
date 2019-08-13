@@ -46,7 +46,7 @@
   margin-left: 10px;
 }
 .logo-text {
-  font-size: 30px;
+  font-size: 24px;
   font-family: "Open Sans", sans-serif;
   /* font-weight: bold; */
   color: var(--primary-color3);
@@ -129,6 +129,7 @@
   z-index: 9999;
   text-align: center;
   padding: 5px;
+  font-weight: bold;
 }
 @media (max-width: 768px) {
   .alert-fixed {
