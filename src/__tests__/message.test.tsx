@@ -6,22 +6,22 @@ import { Result } from "../result";
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-it('style should be "alert alert-success" if result is successful', () => {
+it('style should be "alert-success" if result is successful', () => {
   const msg = "Success";
   const success = new Result(200, msg);
   const { getByText } = render(<Message result={success} />);
 
   const message = getByText(msg);
-  expect(message.className).toBe("alert alert-success");
+  expect(message.className).toMatch(/alert-success/);
 });
 
-it('style should be "alert alert-danger" if result is error', () => {
+it('style should be "alert-danger" if result is error', () => {
   const msg = "Error";
   const success = new Result(300, msg);
   const { getByText } = render(<Message result={success} />);
 
   const message = getByText(msg);
-  expect(message.className).toBe("alert alert-danger");
+  expect(message.className).toMatch(/alert-danger/);
 });
 
 it("should display nothing if there is no result", () => {
