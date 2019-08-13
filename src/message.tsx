@@ -28,9 +28,9 @@ export class Message extends Component<Props, State> {
     if (this.props.result) {
       let style = null;
       if (this.props.result.wasSuccessful()) {
-        style = "alert alert-success";
+        style = "alert alert-fixed alert-success";
       } else {
-        style = "alert alert-danger";
+        style = "alert alert-fixed alert-danger";
       }
       this.setState({ style: style });
       this.addFadeOutStyle();
