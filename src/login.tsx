@@ -23,8 +23,8 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
           </div>
 
           <div className="row">
-            <div className="col-md-10 col-md-offset-1">
-              <Message result={loginResult} />
+            <div className="col-md-8 col-md-offset-1">
+              <Message result={loginResult} isShort={false} />
             </div>
           </div>
 

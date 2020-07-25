@@ -3,6 +3,7 @@ import IResult from "./result";
 
 interface Props {
   result: IResult | null;
+  isShort: boolean;
 }
 
 interface State {
@@ -27,10 +28,16 @@ export class Message extends Component<Props, State> {
   setStyle() {
     if (this.props.result) {
       let style = null;
-      if (this.props.result.wasSuccessful()) {
-        style = "alert alert-fixed alert-success";
+      if (this.props.isShort) {
+        style = "alert short-alert-fixed ";
       } else {
-        style = "alert alert-fixed alert-danger";
+        style = "alert long-alert-fixed ";   
+      }
+
+      if (this.props.result.wasSuccessful()) {
+        style += "alert-success";
+      } else {
+        style += "alert-danger";
       }
       this.setState({ style: style });
       this.addFadeOutStyle();

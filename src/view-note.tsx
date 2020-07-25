@@ -17,8 +17,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
 
   return (
     <div>
-      <h3 className="page-header">View Note</h3>
-      <Message result={result} />
+      <Message result={result} isShort={true} />
       <Formik
         initialValues={{
           title: note.title,

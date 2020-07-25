@@ -57,7 +57,7 @@ test("should create a note", async () => {
 const createNote = async (note: Note) => {
   const { getByText, getByLabelText } = todo;
   fireEvent.click(getByText("New Note", { selector: "button" }));
-  await waitForElement(() => getByText("New Note", { selector: "h3" }));
+  await waitForElement(() => getByText("Create note"));
   fireEvent.change(getByLabelText("Title:"), { target: { value: note.title } });
   fireEvent.change(getByLabelText("Note:"), { target: { value: note.note } });
   fireEvent.click(getByText("Create note"));
