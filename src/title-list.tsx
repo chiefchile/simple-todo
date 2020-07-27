@@ -15,7 +15,7 @@ export const TitleList = (props: Props) => {
           <li key={title._id}>
             <a href="#" onClick={() => props.onClick(title._id, null)}>
               <span
-                className="glyphicon glyphicon-list-alt"
+                className="glyphicon glyphicon-list-alt note-icon"
                 aria-hidden="true"
               />
               &nbsp;
