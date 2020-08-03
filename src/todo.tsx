@@ -119,7 +119,7 @@ export default class Todo extends Component<Props, State> {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-3" id="sidebar">
+          <div className="col-md-2 col-md-offset-1" id="sidebar">
             <Toolbar toNewNote={this.toNewNote} refresh={this.refresh} />
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
           </div>
