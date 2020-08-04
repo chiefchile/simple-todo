@@ -4,10 +4,10 @@ interface Props {
 }
 
 export const Logo = (props: Props) => {
-  let className = props.isCenter ? "logo-text" : "logo-text logo-main";
+  let className = props.isCenter ? "logo" : "logo logo-main";
   return (
-    <h3 className={className}>
+    <div className={className}>
       <span id="logo-slash">/</span>/ TODO
-    </h3>
+    </div>
   );
 };
