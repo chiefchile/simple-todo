@@ -27,10 +27,6 @@
   transition: visibility 0s 2s, opacity 2s linear;
 }
 
-.empty-msg {
-  /*height: 52px;*/
-}
-
 .btn-primary2 {
   background-color: var(--primary-color3);
   color: #ffffff;

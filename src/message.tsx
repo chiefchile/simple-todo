@@ -59,7 +59,7 @@ export class Message extends Component<Props, State> {
         </div>
       );
     } else {
-      return <div className="empty-msg" />;
+      return <div />;
     }
   }
 }
