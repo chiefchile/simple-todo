@@ -59,11 +59,11 @@
 }
 
 .login {
-  border-radius: 15px;
+  border-radius: 8px;
   margin-top: 200px;
   border: 1px solid var(--gray3);
   padding-top: 30px;
-  padding-bottom: 25px;
+  padding-bottom: 27px;
 }
 
 #sidebar {
