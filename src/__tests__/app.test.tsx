@@ -15,10 +15,10 @@ afterEach(cleanup);
 test("login integration test", async () => {
   let app = render(<App />);
   const { getByText, getByLabelText, getByPlaceholderText } = app;
-  fireEvent.change(getByPlaceholderText("Username"), {
+  fireEvent.change(getByLabelText("Username"), {
     target: { value: "guest" }
   });
-  fireEvent.change(getByPlaceholderText("Password"), {
+  fireEvent.change(getByLabelText("Password"), {
     target: { value: "guest" }
   });
   fireEvent.click(getByText("Login"));

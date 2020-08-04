@@ -38,25 +38,25 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
             {({ isSubmitting }) => (
               <Form className="form-horizontal">
                 <div className="form-group">
+                  <label className="col-md-3 col-md-offset-1" htmlFor="username">Username</label>
                   <div className="col-md-10 col-md-offset-1">
                     <Field
                       className="form-control"
                       id="username"
                       type="text"
                       name="username"
-                      placeholder="Username"
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
+                <label className="col-md-3 col-md-offset-1" htmlFor="password">Password</label>
                   <div className="col-md-10 col-md-offset-1">
                     <Field
                       className="form-control"
                       id="password"
                       type="password"
                       name="password"
-                      placeholder="Password"
                     />
                   </div>
                 </div>

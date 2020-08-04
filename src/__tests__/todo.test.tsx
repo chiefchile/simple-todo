@@ -58,17 +58,17 @@ const createNote = async (note: Note) => {
   const { getByText, getByLabelText } = todo;
   fireEvent.click(getByText("New Note", { selector: "button" }));
   await waitForElement(() => getByText("Create note"));
-  fireEvent.change(getByLabelText("Title:"), { target: { value: note.title } });
-  fireEvent.change(getByLabelText("Note:"), { target: { value: note.note } });
+  fireEvent.change(getByLabelText("Title"), { target: { value: note.title } });
+  fireEvent.change(getByLabelText("Note"), { target: { value: note.note } });
   fireEvent.click(getByText("Create note"));
 };
 
 const viewNote = async (note: Note, resultMsg: string) => {
   const { getByText, getByLabelText, getByDisplayValue } = todo;
   await waitForElement(() => getByDisplayValue(note.title));
-  const inputTitle = getByLabelText("Title:");
+  const inputTitle = getByLabelText("Title");
   expect(inputTitle.value).toBe(note.title);
-  const textAreaNote = getByLabelText("Note:");
+  const textAreaNote = getByLabelText("Note");
   console.log(note);
   expect(textAreaNote.value).toBe(note.note);
   await waitForElement(() => getByText(resultMsg));
@@ -87,10 +87,10 @@ test("should update a note", async () => {
 
 const updateNote = (newNote: Note) => {
   const { getByText, getByLabelText } = todo;
-  fireEvent.change(getByLabelText("Title:"), {
+  fireEvent.change(getByLabelText("Title"), {
     target: { value: newNote.title }
   });
-  fireEvent.change(getByLabelText("Note:"), {
+  fireEvent.change(getByLabelText("Note"), {
     target: { value: newNote.note }
   });
   fireEvent.click(getByText("Update note"));
