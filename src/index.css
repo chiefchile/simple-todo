@@ -44,11 +44,11 @@
 }
 
 .logo {
-  font-size: 35px;
+  font-size: 32px;
   font-family: "Source Sans Pro", sans-serif;
   /* font-weight: bold; */
   color: var(--primary-color3);
-  margin-bottom: 30px;
+  margin-bottom: 41px;
   text-align: center;
 }
 
