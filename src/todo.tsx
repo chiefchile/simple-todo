@@ -124,7 +124,7 @@ export default class Todo extends Component<Props, State> {
             <Toolbar toNewNote={this.toNewNote} refresh={this.refresh} />
             <TitleList titles={this.state.titles} onClick={this.viewNote} />
           </div>
-          <div className="col-md-5 col-md-offset-3" id="main-content">
+          <div className="col-md-6 col-md-offset-3" id="main-content">
             {this.state.selectedNote ? (
               <ViewNote
                 note={this.state.selectedNote}
