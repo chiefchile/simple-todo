@@ -46,7 +46,7 @@
 .logo {
   font-size: 30px;
   font-family: "Open Sans", sans-serif;
-  /* font-weight: bold; */
+  font-weight: 800;
   color: var(--primary-color3);
   margin-bottom: 41px;
   text-align: center;
@@ -181,5 +181,5 @@
 }
 
 body {
-  font-family: Lato;
+  font-family: "Open Sans", sans-serif;
 }
