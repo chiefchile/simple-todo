@@ -72,14 +72,6 @@
   z-index: 1000;
   display: block;
 }
-@media (max-width: 768px) {
-  #sidebar {
-    height: auto;
-    position: relative;
-    border: 0;
-    background-color: #ffffff;
-  }
-}
 
 #main-content {
   margin-bottom: 30px;
@@ -129,11 +121,6 @@
 .login-container {
   margin-top: 100px;
 }
-@media (max-width: 768px) {
-  .login-container {
-    margin-top: 100px;
-  }
-}
 
 .short-alert-fixed {
   position: fixed;
@@ -145,12 +132,6 @@
   padding: 10px;
   font-weight: bold;
   font-size: 14px;
-}
-@media (max-width: 768px) {
-  .short-alert-fixed {
-    left: 35%;
-    width: 30%;
-  }
 }
 
 .long-alert-fixed {
@@ -164,12 +145,6 @@
   font-weight: bold;
   font-size: 14px;
 }
-@media (max-width: 768px) {
-  .long-alert-fixed {
-    left: 20%;
-    width: 60%;
-  }
-}
 
 .note-icon {
   margin-right: 5px;
@@ -181,4 +156,32 @@
 
 body {
   font-family: "Roboto", sans-serif;
+}
+
+
+@media (max-width: 768px) {
+  .long-alert-fixed {
+    left: 20%;
+    width: 60%;
+  }
+
+  .short-alert-fixed {
+    left: 35%;
+    width: 30%;
+  }
+
+  .login-container {
+    margin-top: 80px;
+  }
+
+  #sidebar {
+    height: auto;
+    position: relative;
+    border: 0;
+    background-color: #ffffff;
+  }
+
+  .login {
+    border: 0;
+  }
 }
