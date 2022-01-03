@@ -43,6 +43,10 @@
   margin-left: 21px;
 }
 
+.btn-xs {
+  font-size: 13px;
+}
+
 .logo {
   font-size: 31px;
   font-weight: 900;
