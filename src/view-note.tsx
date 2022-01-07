@@ -23,7 +23,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
           title: note.title,
           note: note.note,
           user: note.user,
-          _id: note._id
+          _id: note._id,
         }}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
@@ -44,7 +44,7 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
             <button
               className="btn btn-default btn-adjacent"
               onClick={(): void => {
-                if (confirm("Delete note?")) {
+                if (window.confirm("Delete note?")) {
                   onDelete(note._id);
                 }
               }}

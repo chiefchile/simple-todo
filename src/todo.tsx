@@ -1,4 +1,4 @@
-import { Component, default as React } from "react";
+import { Component, default as React, useState, useEffect } from "react";
 import axios from "axios";
 import { NewNote } from "./new-note";
 import { TitleList } from "./title-list";
@@ -26,119 +26,108 @@ interface Props {
   authToken?: string;
 }
 
-export default class Todo extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      titles: [],
-      selectedNote: null,
-      isNewNote: false,
-      result: null
-    };
-    this.viewNote = this.viewNote.bind(this);
-    this.refresh = this.refresh.bind(this);
-    this.toNewNote = this.toNewNote.bind(this);
-  }
+export default function Todo(props: Props) {
+  const [titles, setTitles] = useState<Title[]>([]);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [isNewNote, setIsNewNote] = useState(false);
+  const [result, setResult] = useState<IResult | null>(null);
 
-  axiosConfig = { headers: { Authorization: `Token ${this.props.authToken}` } };
+  const axiosConfig = {
+    headers: { Authorization: `Token ${props.authToken}` },
+  };
 
-  componentDidMount() {
-    //console.log('Todo mounted');
-    this.getTitles();
-  }
+  useEffect(() => {
+    updateTitles();
+  }, []);
 
-  getTitles() {
-    axios.get(`${API_HOST}/titles/`, this.axiosConfig).then(res => {
+  function updateTitles() {
+    axios.get(`${API_HOST}/titles/`, axiosConfig).then((res) => {
       // TODO: Add err handling / err boundary?
-      this.setState({ titles: res.data });
+      setTitles(res.data);
     });
   }
 
-  viewNote(_id: string | undefined, result: IResult | null) {
-    axios.get(`${API_HOST}/note/${_id}/`, this.axiosConfig).then(res => {
+  function viewNote(_id: string | undefined, result: IResult | null) {
+    axios.get(`${API_HOST}/note/${_id}/`, axiosConfig).then((res) => {
       console.log(res.data);
-      this.setState({
-        selectedNote: res.data,
-        isNewNote: false,
-        result: result
-      });
+      setSelectedNote(res.data);
+      setIsNewNote(false);
+      setResult(result);
     });
   }
 
-  createNote(note: Note) {
+  function createNote(note: Note) {
     axios
-      .post(`${API_HOST}/note/`, note, this.axiosConfig)
-      .then(res => {
+      .post(`${API_HOST}/note/`, note, axiosConfig)
+      .then((res) => {
         console.log(res);
-        this.viewNote(res.data._id, new Result(res.status, "Note created"));
-        this.getTitles();
+        viewNote(res.data._id, new Result(res.status, "Note created"));
+        updateTitles();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
 
-  updateNote(note: Note) {
+  function updateNote(note: Note) {
     axios
-      .put(`${API_HOST}/note/${note._id}/`, note, this.axiosConfig)
-      .then(res => {
+      .put(`${API_HOST}/note/${note._id}/`, note, axiosConfig)
+      .then((res) => {
         console.log(res);
-        this.viewNote(note._id, new Result(res.status, "Note updated"));
-        this.getTitles();
+        viewNote(note._id, new Result(res.status, "Note updated"));
+        updateTitles();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
 
-  deleteNote(_id: string) {
+  function deleteNote(_id: string) {
     axios
-      .delete(`${API_HOST}/note/${_id}/`, this.axiosConfig)
-      .then(res => {
+      .delete(`${API_HOST}/note/${_id}/`, axiosConfig)
+      .then((res) => {
         console.log(res);
-        this.setState({ selectedNote: null, isNewNote: false });
-        this.getTitles();
+        setSelectedNote(null);
+        setIsNewNote(false);
+        updateTitles();
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
 
-  toNewNote() {
-    this.setState({ selectedNote: null, isNewNote: true });
+  function toNewNote() {
+    setSelectedNote(null);
+    setIsNewNote(true);
   }
 
-  refresh() {
-    if (this.state.selectedNote) {
-      this.viewNote(this.state.selectedNote._id, null);
+  function refresh() {
+    if (selectedNote) {
+      viewNote(selectedNote._id, null);
     }
-    this.getTitles();
+    updateTitles();
   }
 
-  render() {
-    return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-2 col-md-offset-1" id="sidebar">
-            <Logo isCenter={false} />
-            <Toolbar toNewNote={this.toNewNote} refresh={this.refresh} />
-            <TitleList titles={this.state.titles} onClick={this.viewNote} />
-          </div>
-          <div className="col-md-6 col-md-offset-3" id="main-content">
-            {this.state.selectedNote ? (
-              <ViewNote
-                note={this.state.selectedNote}
-                onUpdate={note => this.updateNote(note)}
-                onDelete={(_id: string) => this.deleteNote(_id)}
-                result={this.state.result}
-              />
-            ) : null}
-            {this.state.isNewNote ? (
-              <NewNote onSubmit={note => this.createNote(note)} />
-            ) : null}
-          </div>
+  return (
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-2 col-md-offset-1" id="sidebar">
+          <Logo isCenter={false} />
+          <Toolbar toNewNote={toNewNote} refresh={refresh} />
+          <TitleList titles={titles} onClick={viewNote} />
+        </div>
+        <div className="col-md-6 col-md-offset-3" id="main-content">
+          {selectedNote ? (
+            <ViewNote
+              note={selectedNote}
+              onUpdate={(note) => updateNote(note)}
+              onDelete={(_id: string) => deleteNote(_id)}
+              result={result}
+            />
+          ) : null}
+          {isNewNote ? <NewNote onSubmit={(note) => createNote(note)} /> : null}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }

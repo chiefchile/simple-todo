@@ -12,7 +12,7 @@ interface State {
 
 export class Message extends Component<Props, State> {
   state = {
-    style: ""
+    style: "",
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ export class Message extends Component<Props, State> {
       if (this.props.isShort) {
         style = "alert short-alert-fixed ";
       } else {
-        style = "alert long-alert-fixed ";   
+        style = "alert long-alert-fixed ";
       }
 
       if (this.props.result.wasSuccessful()) {
