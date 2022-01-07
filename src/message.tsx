@@ -32,12 +32,12 @@ export function Message(props: Props) {
 
     function addFadeOutStyle() {
       setTimeout(() => {
-        setStyle(style + " fade-out");
+        setStyle((prev) => prev + " fade-out");
       }, 3000);
     }
 
     changeStyle();
-  }, [props.result, props.isShort, style]);
+  }, [props.result]);
 
   if (props.result) {
     return (
