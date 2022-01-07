@@ -1,4 +1,4 @@
-import { Component, default as React, useState, useEffect } from "react";
+import { default as React, useState, useEffect } from "react";
 import axios from "axios";
 import { NewNote } from "./new-note";
 import { TitleList } from "./title-list";
@@ -7,20 +7,12 @@ import Title from "./title";
 import Note from "./note";
 import { default as IResult, Result } from "./result";
 import { Logo } from "./logo";
-import User from "./user";
 import { Toolbar } from "./toolbar";
 
 // const NODEJS_LOCALHOST = "http://localhost:3002";
 // export const API_HOST = "https://simple-todo-backend.herokuapp.com";
 export const API_HOST =
   process.env.REACT_APP_API_HOST || "http://127.0.0.1:8000";
-
-interface State {
-  titles: Title[];
-  selectedNote: Note | null;
-  isNewNote: boolean;
-  result: IResult | null;
-}
 
 interface Props {
   authToken?: string;
@@ -38,6 +30,7 @@ export default function Todo(props: Props) {
 
   useEffect(() => {
     updateTitles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function updateTitles() {

@@ -1,5 +1,5 @@
 import { default as React } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { Message } from "./message";
 import Note from "./note";
 import IResult from "./result";

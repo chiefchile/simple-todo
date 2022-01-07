@@ -4,7 +4,6 @@ import {
   render,
   fireEvent,
   cleanup,
-  within,
   waitFor,
   screen,
   act,
@@ -137,7 +136,7 @@ it("refresh", async () => {
 });
 
 const refresh = async (updatedNote: Note) => {
-  const { getByDisplayValue, getByText, findByText } = todo;
+  const { getByText, findByText } = todo;
   fireEvent.click(getByText("Refresh"));
   await findByText(updatedNote.title);
 };
