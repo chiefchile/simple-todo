@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import IResult from "./result";
 
 interface Props {
@@ -6,60 +6,46 @@ interface Props {
   isShort: boolean;
 }
 
-interface State {
-  style: string;
-}
+export function Message(props: Props) {
+  const [style, setStyle] = useState("");
 
-export class Message extends Component<Props, State> {
-  state = {
-    style: "",
-  };
+  useEffect(() => {
+    function changeStyle() {
+      if (props.result) {
+        let tempStyle = null;
+        if (props.isShort) {
+          tempStyle = "alert short-alert-fixed ";
+        } else {
+          tempStyle = "alert long-alert-fixed ";
+        }
 
-  componentDidMount() {
-    this.setStyle();
-  }
+        if (props.result.wasSuccessful()) {
+          tempStyle += "alert-success";
+        } else {
+          tempStyle += "alert-danger";
+        }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.props.result !== prevProps.result) {
-      this.setStyle();
-    }
-  }
-
-  setStyle() {
-    if (this.props.result) {
-      let style = null;
-      if (this.props.isShort) {
-        style = "alert short-alert-fixed ";
-      } else {
-        style = "alert long-alert-fixed ";
+        setStyle(tempStyle);
+        addFadeOutStyle();
       }
-
-      if (this.props.result.wasSuccessful()) {
-        style += "alert-success";
-      } else {
-        style += "alert-danger";
-      }
-      this.setState({ style: style });
-      this.addFadeOutStyle();
     }
-  }
 
-  addFadeOutStyle() {
-    setTimeout(() => {
-      let style = this.state.style;
-      this.setState({ style: style + " fade-out" });
-    }, 3000);
-  }
-
-  render() {
-    if (this.props.result) {
-      return (
-        <div className={this.state.style} role="alert">
-          {this.props.result.msg}
-        </div>
-      );
-    } else {
-      return <div />;
+    function addFadeOutStyle() {
+      setTimeout(() => {
+        setStyle(style + " fade-out");
+      }, 3000);
     }
+
+    changeStyle();
+  }, [props.result, props.isShort, style]);
+
+  if (props.result) {
+    return (
+      <div className={style} role="alert">
+        {props.result.msg}
+      </div>
+    );
+  } else {
+    return <div />;
   }
 }
