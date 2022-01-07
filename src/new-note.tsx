@@ -15,8 +15,8 @@ export const NewNote = ({ onSubmit }: Props) => {
       <Formik
         initialValues={{ title: "", note: "" }}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
           onSubmit(values);
+          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (

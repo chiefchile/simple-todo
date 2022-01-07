@@ -31,14 +31,19 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
           <Formik
             initialValues={{ username: "", password: "" }}
             onSubmit={(values: User, { setSubmitting }) => {
-              setSubmitting(false);
               onSubmit(values);
+              setSubmitting(false);
             }}
           >
             {({ isSubmitting }) => (
               <Form className="form-horizontal">
                 <div className="form-group">
-                  <label className="col-xs-3 col-xs-offset-1" htmlFor="username">Username</label>
+                  <label
+                    className="col-xs-3 col-xs-offset-1"
+                    htmlFor="username"
+                  >
+                    Username
+                  </label>
                   <div className="col-xs-10 col-xs-offset-1">
                     <Field
                       className="form-control"
@@ -50,7 +55,12 @@ export const Login = ({ onSubmit, onLoginAsGuest, loginResult }: Props) => {
                 </div>
 
                 <div className="form-group">
-                <label className="col-xs-3 col-xs-offset-1" htmlFor="password">Password</label>
+                  <label
+                    className="col-xs-3 col-xs-offset-1"
+                    htmlFor="password"
+                  >
+                    Password
+                  </label>
                   <div className="col-xs-10 col-xs-offset-1">
                     <Field
                       className="form-control"

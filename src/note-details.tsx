@@ -1,5 +1,5 @@
 import { default as React, Fragment } from "react";
-import { Formik, Form, Field } from "formik";
+import { Field } from "formik";
 
 export const NoteDetails = () => {
   return (
