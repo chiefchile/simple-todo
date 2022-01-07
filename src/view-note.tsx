@@ -26,8 +26,8 @@ export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
           _id: note._id,
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
           onUpdate(values);
+          setSubmitting(false);
         }}
         enableReinitialize={true}
       >
