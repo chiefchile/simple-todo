@@ -26,17 +26,23 @@ export function Message(props: Props) {
         }
 
         setStyle(tempStyle);
-        addFadeOutStyle();
+        return addFadeOutStyle();
       }
     }
 
     function addFadeOutStyle() {
-      setTimeout(() => {
+      const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
         setStyle((prev) => prev + " fade-out");
       }, 3000);
+      return timeout;
     }
 
-    changeStyle();
+    const timeout = changeStyle();
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [props.result]);
 
   if (props.result) {
