@@ -7,6 +7,7 @@ import {
   waitFor,
   screen,
   act,
+  within,
 } from "@testing-library/react";
 import axios from "axios";
 import Note from "../note";
@@ -61,6 +62,8 @@ const createNote = async (note: Note) => {
   fireEvent.change(getByLabelText("Title"), { target: { value: note.title } });
   fireEvent.change(getByLabelText("Note"), { target: { value: note.note } });
   fireEvent.click(getByText("Create note"));
+  const todoList = document.getElementById("todo-list")!;
+  await within(todoList).findByText(note.title);
 };
 
 const viewNote = async (note: Note, resultMsg: string) => {
