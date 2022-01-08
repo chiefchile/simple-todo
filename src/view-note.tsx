@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const ViewNote = ({ note, onUpdate, onDelete, result }: Props) => {
-  console.log(note);
+  // console.log(note);
 
   return (
     <div>

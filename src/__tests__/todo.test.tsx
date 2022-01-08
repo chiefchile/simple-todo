@@ -27,7 +27,7 @@ beforeAll((done) => {
       done();
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 });
 
@@ -38,7 +38,7 @@ beforeEach((done) => {
       done();
     })
     .catch(function (error) {
-      //console.log(error);
+      //console.error(error);
       throw error;
     });
 });
@@ -69,7 +69,7 @@ const viewNote = async (note: Note, resultMsg: string) => {
   const inputTitle = getByLabelText("Title");
   expect(inputTitle.value).toBe(note.title);
   const textAreaNote = getByLabelText("Note");
-  console.log(note);
+  // console.log(note);
   expect(textAreaNote.value).toBe(note.note);
   await waitFor(() => getByText(resultMsg));
 };

@@ -42,7 +42,7 @@ export default function Todo(props: Props) {
 
   function viewNote(_id: string | undefined, result: IResult | null) {
     axios.get(`${API_HOST}/note/${_id}/`, axiosConfig).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setSelectedNote(res.data);
       setIsNewNote(false);
       setResult(result);
@@ -53,12 +53,12 @@ export default function Todo(props: Props) {
     axios
       .post(`${API_HOST}/note/`, note, axiosConfig)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         viewNote(res.data._id, new Result(res.status, "Note created"));
         updateTitles();
       })
       .catch(function (error) {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -66,12 +66,12 @@ export default function Todo(props: Props) {
     axios
       .put(`${API_HOST}/note/${note._id}/`, note, axiosConfig)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         viewNote(note._id, new Result(res.status, "Note updated"));
         updateTitles();
       })
       .catch(function (error) {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -79,13 +79,13 @@ export default function Todo(props: Props) {
     axios
       .delete(`${API_HOST}/note/${_id}/`, axiosConfig)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSelectedNote(null);
         setIsNewNote(false);
         updateTitles();
       })
       .catch(function (error) {
-        console.log(error);
+        console.error(error);
       });
   }
 

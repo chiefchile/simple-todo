@@ -14,24 +14,24 @@ interface State {
 export class App extends Component<any, State> {
   state = {
     loginResult: null,
-    authToken: undefined
+    authToken: undefined,
   };
 
   login(user: User): void {
     axios
       .post(`${API_HOST}/api-token-auth/`, user)
-      .then(res => {
-        console.log(res);
+      .then((res) => {
+        // console.log(res);
         this.setState({ authToken: res.data.token });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           loginResult: new Result(
             error.response.status,
             "Invalid username/password pair"
-          )
+          ),
         });
-        console.log(error);
+        console.error(error);
       });
   }
 
