@@ -52,6 +52,7 @@ test("should create a note", async () => {
   todo = render(<Todo authToken={authToken} />);
   const note: Note = { title: "Title1", note: "Note1", user: user };
   await createNote(note);
+  await checkTitles(note.title);
   await viewNote(note, resultMsg);
 });
 
@@ -62,8 +63,6 @@ const createNote = async (note: Note) => {
   fireEvent.change(getByLabelText("Title"), { target: { value: note.title } });
   fireEvent.change(getByLabelText("Note"), { target: { value: note.note } });
   fireEvent.click(getByText("Create note"));
-  const todoList = document.getElementById("todo-list")!;
-  await within(todoList).findByText(note.title);
 };
 
 const viewNote = async (note: Note, resultMsg: string) => {
@@ -83,9 +82,11 @@ test("should update a note", async () => {
   const oldNote: Note = { title: "Old Title", note: "old note", user: user };
   const newNote: Note = { title: "New Title", note: "new note", user: user };
   await createNote(oldNote);
+  await checkTitles(oldNote.title);
   await viewNote(oldNote, "Note created");
   updateNote(newNote);
   await viewNote(newNote, "Note updated");
+  await checkTitles(newNote.title);
 });
 
 const updateNote = (newNote: Note) => {
@@ -108,6 +109,7 @@ it("should delete a note", async () => {
     user: user,
   };
   await createNote(note);
+  await checkTitles(note.title);
   await viewNote(note, "Note created");
   await deleteNote();
 });
@@ -117,7 +119,8 @@ const deleteNote = async () => {
   const { queryByText, getByText } = todo;
   fireEvent.click(getByText("Delete note"));
   await waitFor(() => {
-    const deletedTitle = queryByText("Title to be deleted", { selector: "a" });
+    const todoList = document.getElementById("todo-list")!;
+    const deletedTitle = within(todoList).queryByText("Title to be deleted");
     expect(deletedTitle).toBeFalsy();
   });
 };
@@ -141,7 +144,7 @@ it("refresh", async () => {
 const refresh = async (updatedNote: Note) => {
   const { getByText, findByText } = todo;
   fireEvent.click(getByText("Refresh"));
-  await findByText(updatedNote.title);
+  await checkTitles(updatedNote.title);
 };
 
 const updateNoteThruApi = async (note: Note) => {
@@ -152,3 +155,8 @@ const createNoteThruApi = async (note: Note): Promise<Note> => {
   let res = await axios.post(`${API_HOST}/note/`, note, axiosConfig);
   return res.data;
 };
+
+async function checkTitles(title: string) {
+  const todoList = document.getElementById("todo-list")!;
+  await within(todoList).findByText(title);
+}
