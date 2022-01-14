@@ -25,12 +25,11 @@ export class App extends Component<any, State> {
         this.setState({ authToken: res.data.token });
       })
       .catch((error) => {
-        this.setState({
-          loginResult: new Result(
-            error.response.status,
-            "Invalid username/password pair"
-          ),
-        });
+        if (error.response) {
+          this.setState({
+            loginResult: new Result(error.response.status, error.response.data),
+          });
+        }
         console.error(error);
       });
   }
