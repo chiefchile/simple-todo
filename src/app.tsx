@@ -27,7 +27,10 @@ export class App extends Component<any, State> {
       .catch((error) => {
         if (error.response) {
           this.setState({
-            loginResult: new Result(error.response.status, error.response.data),
+            loginResult: new Result(
+              error.response.status,
+              error.response.data.msg
+            ),
           });
         }
         console.error(error);
