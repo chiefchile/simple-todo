@@ -26,11 +26,14 @@ export class App extends Component<any, State> {
       })
       .catch((error) => {
         if (error.response) {
+          let msg = "";
+          if (error.response.status === 400) {
+            msg = "Invalid username or password";
+          } else {
+            msg = "Internal Server Error";
+          }
           this.setState({
-            loginResult: new Result(
-              error.response.status,
-              error.response.data.msg
-            ),
+            loginResult: new Result(error.response.status, msg),
           });
         }
         console.error(error);
