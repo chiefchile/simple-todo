@@ -8,15 +8,18 @@ import {
   screen,
   act,
   within,
+  waitForElementToBeRemoved,
+  configure,
 } from "@testing-library/react";
 import axios from "axios";
 import Note from "../note";
 import User from "../user";
 
-let todo: any = null;
 const user = "testuser";
 let authToken: string = "";
 let axiosConfig: any = null;
+
+configure({ asyncUtilTimeout: 2000 });
 
 beforeAll((done) => {
   let testuser: User = { username: "testuser", password: "testuser" };
@@ -25,6 +28,9 @@ beforeAll((done) => {
     .then((res) => {
       authToken = res.data.token;
       axiosConfig = { headers: { Authorization: `Token ${authToken}` } };
+      return axios.get(`${API_HOST}/note/deleteTestData/`);
+    })
+    .then((res) => {
       done();
     })
     .catch((error) => {
@@ -32,31 +38,25 @@ beforeAll((done) => {
     });
 });
 
-beforeEach((done) => {
-  axios
-    .get(`${API_HOST}/note/deleteTestData/`)
-    .then((res) => {
-      done();
-    })
-    .catch(function (error) {
-      //console.error(error);
-      throw error;
-    });
-});
+// beforeEach((done) => {});
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
 test("should create a note", async () => {
   const resultMsg = "Note created";
-  todo = render(<Todo authToken={authToken} />);
-  const note: Note = { title: "Title1", note: "Note1", user: user };
-  await createNote(note);
+  const todo = render(<Todo authToken={authToken} />);
+  const note: Note = {
+    title: "create test title",
+    note: "create test note",
+    user: user,
+  };
+  await createNote(todo, note);
   await checkTitles(note.title);
-  await viewNote(note, resultMsg);
+  await viewNote(todo, note, resultMsg);
 });
 
-const createNote = async (note: Note) => {
+const createNote = async (todo: any, note: Note) => {
   const { getByText, getByLabelText } = todo;
   fireEvent.click(getByText("New Note", { selector: "button" }));
   await waitFor(() => getByText("Create note"));
@@ -65,7 +65,7 @@ const createNote = async (note: Note) => {
   fireEvent.click(getByText("Create note"));
 };
 
-const viewNote = async (note: Note, resultMsg: string) => {
+const viewNote = async (todo: any, note: Note, resultMsg: string) => {
   const { getByText, getByLabelText, getByDisplayValue } = todo;
   await waitFor(() => getByDisplayValue(note.title));
   const inputTitle = getByLabelText("Title");
@@ -77,19 +77,19 @@ const viewNote = async (note: Note, resultMsg: string) => {
 };
 
 test("should update a note", async () => {
-  todo = render(<Todo authToken={authToken} />);
+  const todo = render(<Todo authToken={authToken} />);
 
   const oldNote: Note = { title: "Old Title", note: "old note", user: user };
   const newNote: Note = { title: "New Title", note: "new note", user: user };
-  await createNote(oldNote);
+  await createNote(todo, oldNote);
   await checkTitles(oldNote.title);
-  await viewNote(oldNote, "Note created");
-  updateNote(newNote);
-  await viewNote(newNote, "Note updated");
+  await viewNote(todo, oldNote, "Note created");
+  updateNote(todo, newNote);
+  await viewNote(todo, newNote, "Note updated");
   await checkTitles(newNote.title);
 });
 
-const updateNote = (newNote: Note) => {
+const updateNote = (todo: any, newNote: Note) => {
   const { getByText, getByLabelText } = todo;
   fireEvent.change(getByLabelText("Title"), {
     target: { value: newNote.title },
@@ -101,35 +101,34 @@ const updateNote = (newNote: Note) => {
 };
 
 it("should delete a note", async () => {
-  todo = render(<Todo authToken={authToken} />);
+  const todo = render(<Todo authToken={authToken} />);
 
   const note: Note = {
     title: "Title to be deleted",
     note: "delete this",
     user: user,
   };
-  await createNote(note);
+  await createNote(todo, note);
   await checkTitles(note.title);
-  await viewNote(note, "Note created");
-  await deleteNote();
+  await viewNote(todo, note, "Note created");
+  await deleteNote(todo, note);
 });
 
-const deleteNote = async () => {
+const deleteNote = async (todo: any, note: Note) => {
   window.confirm = jest.fn(() => true); // always click 'OK'
   const { queryByText, getByText } = todo;
   fireEvent.click(getByText("Delete note"));
-  await waitFor(() => {
-    const todoList = document.getElementById("todo-list")!;
-    const deletedTitle = within(todoList).queryByText("Title to be deleted");
-    expect(deletedTitle).toBeFalsy();
-  });
+  const todoList = document.getElementById("todo-list")!;
+  await waitForElementToBeRemoved(() =>
+    within(todoList).queryByText(note.title)
+  );
 };
 
 it("refresh", async () => {
-  todo = render(<Todo authToken={authToken} />);
+  const todo = render(<Todo authToken={authToken} />);
   const note: Note = {
     title: "title to be refreshed",
-    note: "hello",
+    note: "refresh test note",
     user: user,
   };
 
@@ -137,11 +136,11 @@ it("refresh", async () => {
     let createdNote = await createNoteThruApi(note);
     const updatedNote: Note = { ...createdNote, title: "updated title" };
     await updateNoteThruApi(updatedNote);
-    await refresh(updatedNote);
+    await refresh(todo, updatedNote);
   });
 });
 
-const refresh = async (updatedNote: Note) => {
+const refresh = async (todo: any, updatedNote: Note) => {
   const { getByText, findByText } = todo;
   fireEvent.click(getByText("Refresh"));
   await checkTitles(updatedNote.title);
